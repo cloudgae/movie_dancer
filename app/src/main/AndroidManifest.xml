@@ -12,7 +12,38 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Moovit_Dancer"
         tools:targetApi="31">
-
+        <activity
+            android:name=".HomeClassInfo"
+            android:exported="false" />
+        <activity
+            android:name=".portfolio.Portfolio_upload"
+            android:exported="false" />
+        <activity
+            android:name=".portfolio.Portfolio"
+            android:exported="false" />
+        <activity
+            android:name=".HomeClassDetail"
+            android:exported="false" />
+        <activity
+            android:name=".HomeClassList"
+            android:exported="false" />
+        <activity
+            android:name=".MyPage.MyPage_Introduce"
+            android:exported="false" />
+        <activity
+            android:name=".MyPage.MyPage_UploadList"
+            android:exported="false" />
+        <activity
+            android:name=".MyPage.MyPage_OpenedClass"
+            android:exported="false" />
+        <activity
+            android:name=".MyPage.MyPage_0"
+            android:exported="false" />
+        <!--
+<activity
+            android:name=".MyPage"
+            android:exported="false" />
+        -->
         <activity
             android:name=".open.Open_8"
             android:exported="false">

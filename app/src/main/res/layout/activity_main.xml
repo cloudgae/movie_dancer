@@ -7,11 +7,88 @@
     tools:context=".MainActivity"
     android:orientation="vertical">
 
-    <Button
-        android:id="@+id/openclass"
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="500dp"
+        android:orientation="vertical"
+        android:gravity="center"
+        >
+
+        <android.widget.Button
+            android:id="@+id/haveclass"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:background="#000000"/>
+
+        <ImageView
+            android:layout_width="200dp"
+            android:layout_height="200dp"
+            android:background="#D9D9D9"
+            android:layout_gravity="center"
+            android:layout_marginBottom="15dp"/>
+
+        <Button
+            android:id="@+id/openclass"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="아직 클래스를 개설하지 않으셨어요!"
+            android:layout_gravity="center" />
+
+
+
+    </LinearLayout>
+
+    <LinearLayout
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="아직 클래스를 개설하지 않으셨어요!"
-        android:layout_gravity="center"/>
+        android:layout_height="wrap_content">
+
+        <ImageButton
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:background="@drawable/add_button"
+            android:layout_marginLeft="290dp"
+            android:layout_marginBottom="10dp"/>
+
+    </LinearLayout>
+
+    <TableLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TableRow>
+
+            <Button
+                android:id="@+id/menu1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="홈"
+                android:textSize="11dp"
+                android:backgroundTint="#D9D9D9"
+                android:textColor="#000000" />
+
+            <Button
+                android:id="@+id/menu2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="포트폴리오 관리"
+                android:textSize="11dp"
+                android:backgroundTint="#D9D9D9"
+                android:textColor="#000000" />
+
+            <Button
+                android:id="@+id/menu3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="마이페이지"
+                android:textSize="11dp"
+                android:backgroundTint="#D9D9D9"
+                android:textColor="#000000"  />
+        </TableRow>
+    </TableLayout>
+
+
 
 </LinearLayout>

@@ -1,0 +1,197 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".MyPage.MyPage_0">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp">
+
+        <android.widget.Button
+            android:id="@+id/goback"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/white_arrow"
+            android:gravity="center"
+            android:layout_marginLeft="10dp"
+            />
+        <android.widget.Button
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginVertical="10dp"
+            android:background="@drawable/alarm_button"
+            android:textSize="10dp"
+            android:layout_gravity="center"
+            android:layout_marginLeft="230dp"/>
+        <android.widget.Button
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:background="@drawable/setting_button"
+            android:textSize="10dp"
+            android:layout_marginVertical="0dp"
+            android:layout_marginLeft="7dp"
+            android:layout_gravity="center"
+            android:layout_marginRight="10dp"/>
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="0dp"
+        android:layout_marginVertical="5dp">
+
+        <Button
+            android:id="@+id/user_profile"
+            android:layout_width="260dp"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/black"
+            android:drawableLeft="@drawable/ellipse"
+            android:fontFamily="@font/notosanskr_regular"
+            android:gravity="left|center"
+            android:text="튜터"
+            android:textColor="@color/white"/>
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/black"
+            android:text="프로필 수정"
+            android:fontFamily="@font/notosanskr_regular"
+            android:layout_gravity="bottom"
+            android:textColor="#858585"
+            android:textSize="10dp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/selector_radio_button"
+        android:gravity="center"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginTop="10dp">
+
+        <Button
+            android:id="@+id/classlist"
+            android:layout_width="wrap_content"
+            android:layout_height="100dp"
+            android:backgroundTint="#3D3D3D"
+            android:text="개설 클래스 목록"
+            android:textSize="10dp" />
+
+        <Button
+            android:id="@+id/likelist"
+            android:layout_width="wrap_content"
+            android:layout_height="100dp"
+            android:text="업로드 영상 목록"
+            android:textSize="10dp"
+            android:backgroundTint="#3D3D3D"/>
+        <Button
+            android:id="@+id/mytype_info"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:text="튜터 소개글"
+            android:textSize="10dp"
+            android:backgroundTint="#3D3D3D"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="30dp"
+        android:layout_marginTop="30dp"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="임시저장 목록"
+            android:textSize="12dp"
+            android:textColor="#858585"/>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="임시저장한 클래스"
+            android:textSize="14dp"
+            android:textColor="#FFFFFF"
+            android:fontFamily="@font/notosanskr_bold"/>
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/line"
+            android:layout_gravity="center"
+            android:layout_marginTop="10dp"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="30dp"
+        android:layout_marginTop="25dp"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="내 정보"
+            android:textSize="12dp"
+            android:textColor="#858585"/>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="나의 문의"
+            android:textSize="14dp"
+            android:textColor="#FFFFFF"
+            android:fontFamily="@font/notosanskr_bold"/>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="환경설정"
+            android:textSize="14dp"
+            android:textColor="#FFFFFF"
+            android:fontFamily="@font/notosanskr_bold"/>
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/line"
+            android:layout_gravity="center"
+            android:layout_marginTop="10dp"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="30dp"
+        android:layout_marginTop="25dp"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="고객 센터"
+            android:textSize="12dp"
+            android:textColor="#858585"/>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="문의사항"
+            android:textSize="14dp"
+            android:textColor="#FFFFFF"
+            android:fontFamily="@font/notosanskr_bold"/>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="공지사항"
+            android:textSize="14dp"
+            android:textColor="#FFFFFF"
+            android:fontFamily="@font/notosanskr_bold"/>
+    </LinearLayout>
+
+</LinearLayout>

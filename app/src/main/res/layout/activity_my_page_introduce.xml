@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".MyPage.MyPage_Introduce">
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <android.widget.Button
+            android:id="@+id/goback"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginVertical="15dp"
+            android:background="@drawable/white_arrow"
+            android:gravity="left"
+            android:layout_marginLeft="10dp"
+            />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_gravity="center"
+            android:fontFamily="@font/notosanskr_bold"
+            android:gravity="center"
+            android:text="튜터 소개"
+            android:textColor="#FFFFFF"
+            android:textSize="17dp" />
+    </FrameLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginHorizontal="20dp"
+                android:fontFamily="@font/notosanskr_bold"
+                android:text="튜터로서의 경력을 소개해주세요"
+                android:textSize="18dp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginHorizontal="20dp"
+                android:fontFamily="@font/notosanskr_regular"
+                android:text="클래스 개설 시 수강생들에게 보여지는 정보입니다."
+                android:textColor="#BBBBBB"
+                android:textSize="14dp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="20dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical"
+                        android:layout_weight="1">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="튜터 소개"
+                            android:fontFamily="@font/notosanskr_regular"/>
+
+                        <EditText
+                            android:id="@+id/edtxt_intro"
+                            android:layout_width="match_parent"
+                            android:layout_height="120dp"
+                            android:hint="자기소개를 간단하게 작성해주세요."
+                            android:textColorHint="#BBBBBB"
+                            android:textSize="14dp"
+                            android:gravity="top"
+                            android:fontFamily="@font/notosanskr_regular"
+                            android:background="@drawable/et_board"
+                            android:textColor="#BBBBBB"
+                            android:maxLength="200"
+                            android:paddingHorizontal="10dp"/>
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="이력 및 경력"
+                            android:fontFamily="@font/notosanskr_regular"/>
+
+                        <EditText
+                            android:id="@+id/edtxt_intro2"
+                            android:layout_width="match_parent"
+                            android:layout_height="120dp"
+                            android:hint="튜터님의 이력 및 경력을 소개해주세요.\n예) 거쳐간 수강생의 수, 클래스 개설 경력, 취득한 자격증 등"
+                            android:textColorHint="#BBBBBB"
+                            android:textSize="14dp"
+                            android:gravity="top"
+                            android:fontFamily="@font/notosanskr_regular"
+                            android:background="@drawable/et_board"
+                            android:textColor="#BBBBBB"
+                            android:maxLength="200"
+                            android:paddingHorizontal="10dp"/>
+
+                    </LinearLayout>
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:layout_weight="1" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:orientation="horizontal"
+                    android:layout_gravity="bottom"
+                    android:layout_marginBottom="20dp">
+
+                    <View
+                        android:layout_width="0dp"
+                        android:layout_height="0dp"
+                        android:layout_weight="1" />
+
+
+                    <ImageButton
+                        android:id="@+id/nextkey"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="right|bottom"
+                        android:layout_marginRight="15dp"
+                        android:backgroundTint="@color/black"
+                        android:padding="5dp"
+                        app:srcCompat="@drawable/next" />
+                </LinearLayout>
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </ScrollView>
+
+
+</LinearLayout>
