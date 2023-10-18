@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/black"
     tools:context=".HomeClassInfo">
 
     <LinearLayout
@@ -49,15 +50,33 @@
             <ImageView
                 android:layout_width="match_parent"
                 android:layout_height="200dp"
-                android:background="#7E7E7E" />
+                android:background="@drawable/class_detail_example" />
 
-            <TextView
-                android:layout_width="match_parent"
+            <LinearLayout
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginHorizontal="20dp"
-                android:fontFamily="@font/notosanskr_medium"
-                android:text="에스파 타이틀곡 클래스"
-                android:textSize="22dp" />
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="217dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:fontFamily="@font/notosanskr_medium"
+                    android:text="에스파 타이틀곡 클래스"
+                    android:textSize="22dp" />
+
+                <TextView
+                    android:layout_width="63dp"
+                    android:layout_height="25dp"
+                    android:background="@drawable/recruiting_button"
+                    android:fontFamily="@font/notosanskr_medium"
+                    android:gravity="center"
+                    android:layout_gravity="center"
+                    android:text="모집중(2/10)"
+                    android:textColor="#E87FEA"
+                    android:textSize="9dp" />
+
+            </LinearLayout>
 
             <RatingBar
                 style="@style/Widget.AppCompat.RatingBar.Small"
@@ -65,8 +84,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="20dp"
                 android:numStars="5"
-                android:progressBackgroundTint="@color/white"
-                android:progressTint="@color/white"
+                android:progressBackgroundTint="#E87FEA"
+                android:progressTint="#E87FEA"
                 android:rating="4"
                 android:stepSize="0.5" />
 
@@ -85,7 +104,10 @@
                     android:drawableTop="@drawable/ellipse173"
                     android:gravity="center"
                     android:padding="10dp"
-                    android:text="KPOP" />
+                    android:textSize="12dp"
+                    android:text="KPOP"
+                    android:fontFamily="@font/notosanskr_regular"
+                    android:includeFontPadding="false"/>
 
                 <TextView
                     android:layout_width="155dp"
@@ -95,7 +117,10 @@
                     android:drawableTop="@drawable/ellipse173"
                     android:gravity="center"
                     android:padding="10dp"
-                    android:text="KPOP" />
+                    android:textSize="12dp"
+                    android:text="입문자에게 적합"
+                    android:fontFamily="@font/notosanskr_regular"
+                    android:includeFontPadding="false"/>
             </LinearLayout>
 
             <LinearLayout
@@ -103,6 +128,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="20dp"
                 android:layout_marginTop="10dp"
+                android:layout_marginBottom="20dp"
                 android:orientation="horizontal">
 
                 <TextView
@@ -113,7 +139,10 @@
                     android:drawableTop="@drawable/ellipse173"
                     android:gravity="center"
                     android:padding="10dp"
-                    android:text="KPOP" />
+                    android:textSize="12dp"
+                    android:text="원데이 클래스"
+                    android:fontFamily="@font/notosanskr_regular"
+                    android:includeFontPadding="false"/>
 
                 <TextView
                     android:layout_width="155dp"
@@ -123,16 +152,20 @@
                     android:drawableTop="@drawable/ellipse173"
                     android:gravity="center"
                     android:padding="10dp"
-                    android:text="KPOP" />
+                    android:textSize="12dp"
+                    android:text="노원구 공릉동"
+                    android:fontFamily="@font/notosanskr_regular"
+                    android:includeFontPadding="false"/>
             </LinearLayout>
 
             <com.google.android.material.tabs.TabLayout
                 android:id="@+id/tab_layout"
                 android:layout_width="match_parent"
                 android:layout_height="?actionBarSize"
-                app:tabIndicator="@color/white"
-                app:tabSelectedTextColor="@color/white"
-                app:tabTextColor="@color/white" />
+                app:tabIndicatorColor="#FFFFFF"
+                app:tabSelectedTextColor="#FFFFFF"
+                app:tabBackground="@drawable/tab_background"
+                app:tabTextColor="#707070" />
 
             <androidx.viewpager.widget.ViewPager
                 android:id="@+id/pager"

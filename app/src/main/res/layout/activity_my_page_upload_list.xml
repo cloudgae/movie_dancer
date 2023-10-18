@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:background="@color/black"
     tools:context=".MyPage.MyPage_UploadList">
 
     <FrameLayout
@@ -40,11 +41,13 @@
         app:tabIndicatorColor="#FFFFFF"
         app:tabSelectedTextColor="#FFFFFF"
         app:tabBackground="@drawable/tab_background"
+        app:tabTextAppearance="@style/NotoSansRegularTabStyle"
         app:tabTextColor="#707070" />
 
     <androidx.viewpager.widget.ViewPager
         android:id="@+id/pager"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="match_parent"/>
+
 
 </LinearLayout>

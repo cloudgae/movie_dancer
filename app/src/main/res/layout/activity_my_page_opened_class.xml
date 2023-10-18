@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#000000"
+    android:background="@color/black"
     android:orientation="vertical"
     tools:context=".MyPage.MyPage_OpenedClass">
 
@@ -28,7 +28,7 @@
             android:layout_gravity="center"
             android:fontFamily="@font/notosanskr_bold"
             android:gravity="center"
-            android:text="개설한 클래스"
+            android:text="개설된 클래스"
             android:textColor="#FFFFFF"
             android:textSize="17dp" />
     </FrameLayout>
@@ -55,24 +55,40 @@
 
                 <TextView
                     android:layout_width="wrap_content"
-                    android:layout_height="28dp"
-                    android:text="케이팝 걸그룹 타이틀곡 메들..."
+                    android:layout_height="30dp"
+                    android:text="케이팝 걸그룹 타이틀곡 메들리"
                     android:textColor="#FFFFFF"
                     android:textSize="13dp"
                     android:fontFamily="@font/notosanskr_medium"
                     android:layout_marginLeft="10dp" />
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="신청 인원"
+                        android:textSize="10dp"
+                        android:textColor="#FFFFFF"
+                        android:layout_marginLeft="10dp" />
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="2명·모집중"
+                        android:textSize="10dp"
+                        android:textColor="#E87FEA"
+                        android:layout_marginLeft="10dp" />
+
+                </LinearLayout>
+
+
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="2023.05.12 (금) 16:00 - 18:00"
-                    android:textSize="12dp"
-                    android:textColor="#FFFFFF"
-                    android:layout_marginLeft="10dp" />
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="신청 인원 : 2명"
-                    android:textSize="12dp"
+                    android:textSize="10dp"
                     android:textColor="#FFFFFF"
                     android:layout_marginLeft="10dp" />
 
@@ -119,24 +135,40 @@
 
                 <TextView
                     android:layout_width="wrap_content"
-                    android:layout_height="28dp"
-                    android:text="에스파 타이틀곡 클래스"
+                    android:layout_height="30dp"
+                    android:text="힙합 베이직 클래스"
                     android:textColor="#FFFFFF"
                     android:textSize="13dp"
                     android:fontFamily="@font/notosanskr_medium"
                     android:layout_marginLeft="10dp" />
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="신청 인원"
+                        android:textSize="10dp"
+                        android:textColor="#FFFFFF"
+                        android:layout_marginLeft="10dp" />
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="3명·모집중"
+                        android:textSize="10dp"
+                        android:textColor="#E87FEA"
+                        android:layout_marginLeft="10dp" />
+
+                </LinearLayout>
+
+
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="2023.05.12 (금) 16:00 - 18:00"
-                    android:textSize="12dp"
-                    android:textColor="#FFFFFF"
-                    android:layout_marginLeft="10dp" />
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="신청 인원 : 2명"
-                    android:textSize="12dp"
+                    android:textSize="10dp"
                     android:textColor="#FFFFFF"
                     android:layout_marginLeft="10dp" />
 
@@ -184,24 +216,40 @@
 
                 <TextView
                     android:layout_width="wrap_content"
-                    android:layout_height="28dp"
+                    android:layout_height="30dp"
                     android:text="케이팝 걸그룹 타이틀곡 메들..."
                     android:textColor="#FFFFFF"
                     android:textSize="13dp"
                     android:fontFamily="@font/notosanskr_medium"
                     android:layout_marginLeft="10dp" />
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="신청 인원"
+                        android:textSize="10dp"
+                        android:textColor="#FFFFFF"
+                        android:layout_marginLeft="10dp" />
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="1명·모집중"
+                        android:textSize="10dp"
+                        android:textColor="#E87FEA"
+                        android:layout_marginLeft="10dp" />
+
+                </LinearLayout>
+
+
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="2023.05.12 (금) 16:00 - 18:00"
-                    android:textSize="12dp"
-                    android:textColor="#FFFFFF"
-                    android:layout_marginLeft="10dp" />
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="신청 인원 : 2명"
-                    android:textSize="12dp"
+                    android:textSize="10dp"
                     android:textColor="#FFFFFF"
                     android:layout_marginLeft="10dp" />
 
@@ -227,7 +275,7 @@
         android:src="@drawable/whiteline"
         android:layout_gravity="center" />
 
-    <LinearLayout
+    <!--<LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content">
 
@@ -284,7 +332,7 @@
 
 
 
-    </LinearLayout>
+    </LinearLayout>-->
 
     <ImageView
         android:layout_width="wrap_content"

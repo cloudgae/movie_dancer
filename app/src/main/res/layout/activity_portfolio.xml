@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:background="@color/black"
     tools:context=".portfolio.Portfolio">
 
     <FrameLayout
@@ -17,7 +18,7 @@
             android:layout_gravity="center"
             android:fontFamily="@font/notosanskr_bold"
             android:gravity="center"
-            android:text="영상 관리"
+            android:text=""
             android:textColor="#FFFFFF"
             android:textSize="17dp" />
     </FrameLayout>
@@ -29,12 +30,12 @@
         app:tabIndicatorColor="#FFFFFF"
         app:tabSelectedTextColor="#FFFFFF"
         app:tabBackground="@drawable/tab_background"
+        app:tabTextAppearance="@style/NotoSansRegularTabStyle"
         app:tabTextColor="#707070" />
 
     <androidx.viewpager.widget.ViewPager
         android:id="@+id/pager"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
-
+        android:layout_height="match_parent"/>
 </LinearLayout>
 

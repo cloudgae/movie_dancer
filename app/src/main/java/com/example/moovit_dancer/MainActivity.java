@@ -4,8 +4,19 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.content.Intent;
+import android.os.Bundle;
+import android.widget.ImageButton;
+
+import androidx.annotation.NonNull;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
+
 
 import com.example.moovit_dancer.MyPage.MyPage_0;
 import com.example.moovit_dancer.open.Open_0;
@@ -18,13 +29,35 @@ import java.util.Map;
 
 public class MainActivity extends AppCompatActivity {
 
+    private BottomNavigationView bottomNavigationView;
     Button openclass,haveclass;
-    Button mn1, mn2, mn3;
+    ImageButton makeclass;
+    /*Button mn1, mn2, mn3;*/
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        bottomNavigationView = findViewById(R.id.bottomNavigationView);
+        bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                switch (item.getItemId()) {
+                    case R.id.home:
+                        openMainActivity();
+                        return true;
+                    case R.id.portfolio:
+                        openPortfolio();
+                        return true;
+                    case R.id.mypage:
+                        openMyPage();
+                        return true;
+                }
+                return false;
+            }
+        });
+
 
 //        FirebaseFirestore db = FirebaseFirestore.getInstance();
         //                db.collection("Class").document();
@@ -34,9 +67,10 @@ public class MainActivity extends AppCompatActivity {
 
         openclass = findViewById(R.id.openclass);
         haveclass = findViewById(R.id.haveclass);
-        mn1 = findViewById(R.id.menu1);
+        makeclass = findViewById(R.id.makeclass);
+        /*mn1 = findViewById(R.id.menu1);
         mn2 = findViewById(R.id.menu2);
-        mn3 = findViewById(R.id.menu3);
+        mn3 = findViewById(R.id.menu3);*/
 
         openclass.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -64,7 +98,18 @@ public class MainActivity extends AppCompatActivity {
                 finish();
             }
         });
-        mn1.setOnClickListener(new View.OnClickListener() {
+
+        makeclass.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(MainActivity.this, Open_0.class);
+                startActivity(i);
+                finish();
+            }
+        });
+
+
+        /*mn1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent i = new Intent(MainActivity.this, MainActivity.class);
@@ -89,7 +134,26 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(i);
                 finish();
             }
-        });
+        });*/
+
+
+
+
+    }
+
+    private void openMainActivity() {
+        Intent intent = new Intent(this, MainActivity.class);
+        startActivity(intent);
+    }
+
+    private void openPortfolio() {
+        Intent intent = new Intent(this, Portfolio.class);
+        startActivity(intent);
+    }
+
+    private void openMyPage() {
+        Intent intent = new Intent(this, MyPage_0.class);
+        startActivity(intent);
     }
 
 }
