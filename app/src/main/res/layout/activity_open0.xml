@@ -162,7 +162,8 @@
                             android:id="@+id/spinner"
                             android:layout_width="150dp"
                             android:layout_height="40dp"
-                            android:backgroundTint="#BEBEBE" />
+                            android:backgroundTint="#BEBEBE"
+                            />
                     </LinearLayout>
 
                     <LinearLayout
@@ -180,7 +181,8 @@
                             android:id="@+id/spinner2"
                             android:layout_width="150dp"
                             android:layout_height="40dp"
-                            android:backgroundTint="#BEBEBE" />
+                            android:backgroundTint="#BEBEBE"
+                            android:theme="@style/CustomSpinnerStyle"/>
                     </LinearLayout>
                 </LinearLayout>
 

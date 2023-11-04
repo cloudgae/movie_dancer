@@ -57,7 +57,8 @@
             android:id="@+id/makeclass"
             android:layout_width="50dp"
             android:layout_height="50dp"
-            android:background="@drawable/add_button"
+            android:backgroundTint="@color/black"
+            app:srcCompat="@drawable/class_add_button"
             android:layout_marginLeft="290dp"
             android:layout_marginBottom="20dp"/>
 

@@ -51,6 +51,12 @@
         <item name="android:textSize">14sp</item> <!-- 폰트 크기를 원하는 크기로 설정합니다. -->
         <item name="android:textColor">#FFFFFF</item> <!-- 텍스트 색상을 흰색으로 설정합니다. -->
     </style>
+    <style name="CustomSpinnerStyle" parent="Widget.AppCompat.Spinner.DropDown">
+        <item name="android:background">@color/black</item> <!-- 드롭다운 목록의 배경색을 검정색으로 설정 -->
+        <item name="android:textColor">@color/white</item> <!-- 드롭다운 목록의 텍스트 색상을 흰색으로 설정 -->
+    </style>
+
+
 
 
 </resources>
