@@ -4,12 +4,14 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Spinner;
@@ -24,16 +26,18 @@ import com.google.android.material.textfield.TextInputLayout;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 
+import java.sql.Array;
 import java.util.HashMap;
 import java.util.Map;
 
 public class Open_0 extends AppCompatActivity {
 
-    String[] items = {"KPOP", "스트릿", "코레오"};
-    String[] items2 = {"상", "중", "하"};
+    String[] items = {"K-POP", "스트릿", "코레오"};
+    String[] items2 = {"입문", "중급", "고급"};
     ImageButton backkey, nextkey0;
     RadioGroup Rg_p, Rg_t;
     RadioButton R_p1, R_pn, R_t1, R_tn;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,8 +52,13 @@ public class Open_0 extends AppCompatActivity {
         nextkey0 = findViewById(R.id.nextkey0);
 
         FirebaseFirestore db = FirebaseFirestore.getInstance();
+//        Map<String, Object> data = new HashMap<>();
+//        DocumentReference classRef = db.collection("Class").document("C");
+        //새로운 문서에 대한 참조 생성
+        DocumentReference newClassRef = db.collection("Class").document();
+//        새로운 문서의 id 가져오기
+        String newClassId = newClassRef.getId();
         Map<String, Object> data = new HashMap<>();
-        DocumentReference classRef = db.collection("Class").document("C");
 
         Rg_p = findViewById(R.id.Rg_p);
         R_p1 = findViewById(R.id.R_p1);
@@ -58,16 +67,16 @@ public class Open_0 extends AppCompatActivity {
         R_t1 = findViewById(R.id.R_t1);
         R_tn = findViewById(R.id.R_tn);
 
-
         //드롭다운 메뉴1
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(
-                this, androidx.appcompat.R.layout.support_simple_spinner_dropdown_item, items
+                this, R.layout.custom_spinner_item, R.id.text_view_id, items
         );
+        //드롭다운 메뉴 스타일 여기서 수ㄱ
         adapter.setDropDownViewResource(
-                androidx.appcompat.R.layout.support_simple_spinner_dropdown_item
+                R.layout.custom_spinner_item
         );
         spinner.setAdapter(adapter);
-
+        spinner.setPopupBackgroundResource(R.drawable.custom_spinner_dropdown_item_background);
         spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
@@ -75,16 +84,16 @@ public class Open_0 extends AppCompatActivity {
                 switch (i) {
                     case 0:
                         data.put("genre", "kpop");
-                        classRef.set(data);
+                        newClassRef.set(data);
 //                        classRef.update("genre", "kpop");
                         break;
                     case 1:
                         data.put("genre", "street");
-                        classRef.set(data);
+                        newClassRef.set(data);
                         break;
                     case 2:
                         data.put("genre", "choreo");
-                        classRef.set(data);
+                        newClassRef.set(data);
                          break;
                 };
             };
@@ -92,35 +101,35 @@ public class Open_0 extends AppCompatActivity {
             @Override
             public void onNothingSelected(AdapterView<?> adapterView) {
                 data.put("genre", "kpop");
-                classRef.set(data);
+                newClassRef.set(data);
             }
         });
 
         //드롭다운 메뉴2
         ArrayAdapter<String> adapter2 = new ArrayAdapter<>(
-                this, androidx.appcompat.R.layout.support_simple_spinner_dropdown_item, items2
+                this, R.layout.custom_spinner_item, R.id.text_view_id, items2
         );
         adapter2.setDropDownViewResource(
-                androidx.appcompat.R.layout.support_simple_spinner_dropdown_item
+                R.layout.custom_spinner_item
         );
         spinner2.setAdapter(adapter2);
-
+//        spinner2.setPopupBackgroundResource(R.drawable.custom_spinner_dropdown_item_background);
         spinner2.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 switch (i) {
                     case 0:
                         data.put("diff", "상");
-                        classRef.set(data);
+                        newClassRef.set(data);
 //                        classRef.update("genre", "kpop");
                         break;
                     case 1:
                         data.put("diff", "중");
-                        classRef.set(data);
+                        newClassRef.set(data);
                         break;
                     case 2:
                         data.put("diff", "하");
-                        classRef.set(data);
+                        newClassRef.set(data);
                         break;
                 };
             };
@@ -128,7 +137,7 @@ public class Open_0 extends AppCompatActivity {
             @Override
             public void onNothingSelected(AdapterView<?> adapterView) {
                     data.put("diff", "상");
-                    classRef.set(data);
+                newClassRef.set(data);
             }
         });
 
@@ -138,11 +147,11 @@ public class Open_0 extends AppCompatActivity {
             public void onCheckedChanged(RadioGroup radioGroup, int i) {
                 if(i == R.id.R_p1){
                     data.put("people", "1");
-                    classRef.set(data);
+                    newClassRef.set(data);
                 }
                 else{
                     data.put("people", "n");
-                    classRef.set(data);
+                    newClassRef.set(data);
                 }
             }
         });
@@ -153,11 +162,11 @@ public class Open_0 extends AppCompatActivity {
             public void onCheckedChanged(RadioGroup radioGroup, int i) {
                 if(i == R.id.R_t1){
                     data.put("time", "1");
-                    classRef.set(data);
+                    newClassRef.set(data);
                 }
                 else{
                     data.put("time", "n");
-                    classRef.set(data);
+                    newClassRef.set(data);
                 }
             }
         });
@@ -179,8 +188,9 @@ public class Open_0 extends AppCompatActivity {
             public void onClick(View view) {
                 //new Intent(현재 context, 이동할 activity)
                 Intent i = new Intent(Open_0.this, Open_1.class);
+                i.putExtra("documentId", newClassId);
                 startActivity(i);    //intent 에 명시된 액티비티로 이동
-                finish();    //현재 액티비티 종료
+//                finish();    //현재 액티비티 종료
             }
         });
     }
