@@ -33,7 +33,11 @@ public class Open_4 extends AppCompatActivity {
 
         FirebaseFirestore db = FirebaseFirestore.getInstance();
         Map<String, Object> data = new HashMap<>();
-        DocumentReference classRef = db.collection("Class").document("C");
+        //1028
+        // 현재 액티비티에서 문서 ID를 받음
+        String documentId = getIntent().getStringExtra("documentId");
+        DocumentReference docRef = db.collection("Class").document(documentId);
+//        DocumentReference classRef = db.collection("Class").document("C");
 
         backkey.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -52,11 +56,11 @@ public class Open_4 extends AppCompatActivity {
                 data.put("curri", curri);
                 caution = edtxt_caution.getText().toString();
                 data.put("caution", caution);
-                classRef.update(data);
+                docRef.update(data);
 
                 Intent i = new Intent(Open_4.this, Open_5.class);
+                i.putExtra("documentId", documentId);
                 startActivity(i);    //intent 에 명시된 액티비티로 이동
-                finish();    //현재 액티비티 종료
             }
         });
     }
