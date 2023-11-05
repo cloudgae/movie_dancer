@@ -8,7 +8,6 @@ import android.view.View;
 import android.widget.Button;
 
 import com.example.moovit_dancer.MainActivity;
-import com.example.moovit_dancer.MyPage.MyPage_Introduce;
 import com.example.moovit_dancer.R;
 
 public class Splash_1 extends AppCompatActivity {
@@ -27,7 +26,7 @@ public class Splash_1 extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 //                TODO : 이동 대상 인텐트 변경(소개 작성 클래스로)
-                Intent i = new Intent(Splash_1.this, MyPage_Introduce.class);
+                Intent i = new Intent(Splash_1.this, Onboarding.class);
 
                 startActivity(i);	//intent 에 명시된 액티비티로 이동
 

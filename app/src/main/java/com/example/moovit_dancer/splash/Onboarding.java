@@ -1,4 +1,4 @@
-package com.example.moovit_dancer.MyPage;
+package com.example.moovit_dancer.splash;
 
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -11,7 +11,6 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 
-import com.example.moovit_dancer.splash.Splash_1;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -21,7 +20,7 @@ import com.example.moovit_dancer.R;
 import java.util.HashMap;
 import java.util.Map;
 
-public class MyPage_Introduce extends AppCompatActivity {
+public class Onboarding extends AppCompatActivity {
 
     Button arw;
     LinearLayout careerContainer;
@@ -36,7 +35,7 @@ public class MyPage_Introduce extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_my_page_introduce);
+        setContentView(R.layout.activity_onboarding);
 
         Button arw = (Button) findViewById(R.id.goback);
         careerContainer = findViewById(R.id.career_container);
@@ -56,7 +55,7 @@ public class MyPage_Introduce extends AppCompatActivity {
         arw.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent i = new Intent(com.example.moovit_dancer.MyPage.MyPage_Introduce.this, Splash_1.class);
+                Intent i = new Intent(Onboarding.this, Splash_1.class);
                 startActivity(i);
                 finish();
             }

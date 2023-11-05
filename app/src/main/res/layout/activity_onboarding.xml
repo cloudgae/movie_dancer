@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:background="@color/black"
-    tools:context=".MyPage.MyPage_Introduce">
+    tools:context=".splash.Onboarding">
 
     <FrameLayout
         android:layout_width="match_parent"
@@ -131,7 +131,39 @@
                                 android:drawablePadding="10dp"
                                 android:paddingHorizontal="10dp"/>
 
+                            <!--<EditText
+                                android:id="@+id/edtxt_career2"
+                                android:layout_width="match_parent"
+                                android:layout_height="50dp"
+                                android:layout_marginBottom="10dp"
+                                android:background="@drawable/et_board"
+                                android:drawableLeft="@drawable/no2"
+                                android:drawablePadding="10dp"
+                                android:fontFamily="@font/notosanskr_regular"
+                                android:gravity="center_vertical"
+                                android:hint="탭하여 내용을 입력해주세요."
+                                android:maxLength="200"
+                                android:paddingHorizontal="10dp"
+                                android:textColor="#BBBBBB"
+                                android:textColorHint="#BBBBBB"
+                                android:textSize="14dp" />
 
+                            <EditText
+                                android:id="@+id/edtxt_career3"
+                                android:layout_width="match_parent"
+                                android:layout_height="50dp"
+                                android:hint="탭하여 내용을 입력해주세요."
+                                android:textColorHint="#BBBBBB"
+                                android:textSize="14dp"
+                                android:gravity="center_vertical"
+                                android:fontFamily="@font/notosanskr_regular"
+                                android:background="@drawable/et_board"
+                                android:textColor="#BBBBBB"
+                                android:maxLength="200"
+                                android:drawableLeft="@drawable/no3"
+                                android:layout_marginBottom="10dp"
+                                android:drawablePadding="10dp"
+                                android:paddingHorizontal="10dp"/>-->
 
                             <Button
                                 android:id="@+id/add_career"
@@ -171,8 +203,9 @@
                         android:layout_height="50dp"
                         android:layout_gravity="center"
                         android:gravity="center"
-                        android:text="수정 완료"
+                        android:text="작성 완료"
                         android:textSize="16dp"
+                        android:textColor="@color/black"
                         android:fontFamily="@font/notosanskr_medium"
                         android:includeFontPadding="false"
                         />
@@ -187,68 +220,3 @@
 
 
 </LinearLayout>
-
-    <!-- <EditText
-                                    android:id="@+id/edtxt_career2"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="50dp"
-                                    android:layout_marginBottom="10dp"
-                                    android:background="@drawable/et_board"
-                                    android:drawableLeft="@drawable/no2"
-                                    android:drawablePadding="10dp"
-                                    android:fontFamily="@font/notosanskr_regular"
-                                    android:gravity="center_vertical"
-                                    android:hint="탭하여 내용을 입력해주세요."
-                                    android:maxLength="200"
-                                    android:paddingHorizontal="10dp"
-                                    android:textColor="#BBBBBB"
-                                    android:textColorHint="#BBBBBB"
-                                    android:textSize="14dp" />
-
-                                <EditText
-                                    android:id="@+id/edtxt_career3"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="50dp"
-                                    android:hint="탭하여 내용을 입력해주세요."
-                                    android:textColorHint="#BBBBBB"
-                                    android:textSize="14dp"
-                                    android:gravity="center_vertical"
-                                    android:fontFamily="@font/notosanskr_regular"
-                                    android:background="@drawable/et_board"
-                                    android:textColor="#BBBBBB"
-                                    android:maxLength="200"
-                                    android:drawableLeft="@drawable/no4"
-                                    android:layout_marginBottom="10dp"
-                                    android:drawablePadding="10dp"
-                                    android:paddingHorizontal="10dp"/>
-
-                                <EditText
-                                    android:id="@+id/edtxt_career4"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="50dp"
-                                    android:hint="탭하여 내용을 입력해주세요."
-                                    android:textColorHint="#BBBBBB"
-                                    android:textSize="14dp"
-                                    android:gravity="center_vertical"
-                                    android:fontFamily="@font/notosanskr_regular"
-                                    android:background="@drawable/et_board"
-                                    android:textColor="#BBBBBB"
-                                    android:maxLength="200"
-                                    android:layout_marginBottom="10dp"
-                                    android:drawablePadding="10dp"
-                                    android:paddingHorizontal="10dp"/>
-                                <EditText
-                                    android:id="@+id/edtxt_career5"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="50dp"
-                                    android:hint="탭하여 내용을 입력해주세요."
-                                    android:textColorHint="#BBBBBB"
-                                    android:textSize="14dp"
-                                    android:gravity="center_vertical"
-                                    android:fontFamily="@font/notosanskr_regular"
-                                    android:background="@drawable/et_board"
-                                    android:textColor="#BBBBBB"
-                                    android:maxLength="200"
-                                    android:layout_marginBottom="10dp"
-                                    android:drawablePadding="10dp"
-                                    android:paddingHorizontal="10dp"/>-->

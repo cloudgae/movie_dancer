@@ -13,6 +13,9 @@
         android:theme="@style/Theme.Moovit_Dancer"
         tools:targetApi="31">
         <activity
+            android:name=".splash.Onboarding"
+            android:exported="false" />
+        <activity
             android:name=".HomeClassInfo"
             android:exported="false" />
         <activity
