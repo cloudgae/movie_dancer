@@ -78,6 +78,9 @@ public class Portfolio extends AppCompatActivity {
             if (videoPath != null) {
                 videoFile = new File(videoPath);
 
+                // 비동기 작업으로 S3 업로드 실행
+                new UploadVideoTask().execute(videoFile);
+
                 // 썸네일 생성
                 Bitmap thumbnail = createThumbnail(videoFile);
 
