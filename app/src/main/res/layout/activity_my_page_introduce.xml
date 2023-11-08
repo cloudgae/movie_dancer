@@ -114,7 +114,7 @@
                             android:orientation="vertical">
 
 
-                            <EditText
+                            <!--<EditText
                                 android:id="@+id/edtxt_career1"
                                 android:layout_width="match_parent"
                                 android:layout_height="50dp"
@@ -129,7 +129,7 @@
                                 android:drawableLeft="@drawable/no1_default"
                                 android:layout_marginBottom="10dp"
                                 android:drawablePadding="10dp"
-                                android:paddingHorizontal="10dp"/>
+                                android:paddingHorizontal="10dp"/>-->
 
 
 

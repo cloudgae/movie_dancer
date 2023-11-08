@@ -18,6 +18,7 @@ import com.google.firebase.firestore.FirebaseFirestore;
 
 import com.example.moovit_dancer.R;
 
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -28,6 +29,8 @@ public class MyPage_Introduce extends AppCompatActivity {
     Button addCareerButton;
     Button finishBtn;
     int careerCount = 0; // 초기 career 상자 개수
+    private EditText introduceEditText;
+    private EditText[] careerEditTexts;
 
     FirebaseFirestore firestore;
     CollectionReference dancerCollection;
@@ -36,7 +39,7 @@ public class MyPage_Introduce extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_my_page_introduce);
+        setContentView(R.layout.activity_onboarding);
 
         Button arw = (Button) findViewById(R.id.goback);
         careerContainer = findViewById(R.id.career_container);
@@ -50,13 +53,21 @@ public class MyPage_Introduce extends AppCompatActivity {
         // Firestore 컬렉션 및 문서 참조 설정
         dancerCollection = firestore.collection("Dancer");
         profile1Document = dancerCollection.document("profile1");
+        introduceEditText = findViewById(R.id.edtxt_intro);
+        careerEditTexts = new EditText[]{
+                findViewById(R.id.edtxt_career1),
+                // Add more EditText views for career fields as needed
+        };
 
+
+        // Load data from Firestore and populate the EditText fields
+        loadUserData();
 
 
         arw.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent i = new Intent(com.example.moovit_dancer.MyPage.MyPage_Introduce.this, Splash_1.class);
+                Intent i = new Intent(MyPage_Introduce.this, Splash_1.class);
                 startActivity(i);
                 finish();
             }
@@ -66,7 +77,7 @@ public class MyPage_Introduce extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 // '+ 추가하기' 버튼을 클릭하면 새로운 career 상자를 생성
-                addNewCareerBox();
+                addNewCareerBox(null);
             }
         });
 
@@ -80,6 +91,32 @@ public class MyPage_Introduce extends AppCompatActivity {
             }
         });
     }
+
+    private void loadUserData() {
+        profile1Document.get().addOnSuccessListener(documentSnapshot -> {
+            if (documentSnapshot.exists()) {
+                String introduce = documentSnapshot.getString("introduce");
+                introduceEditText.setText(introduce);
+
+                // career 데이터를 불러와 EditText 상자에 표시
+                for (int i = 1; i <= careerEditTexts.length; i++) {
+                    String careerFieldName = "career" + i;
+                    String careerData = documentSnapshot.getString(careerFieldName);
+                    if (careerData != null) {
+                        if (i <= careerCount) {
+                            careerEditTexts[i - 1].setText(careerData);
+                        } else {
+                            // 데이터가 더 많이 존재할 경우, 상자 추가
+                            addNewCareerBox(careerData);
+                        }
+                    }
+                }
+            }
+        });
+    }
+
+
+
 
     private void saveIntroduceToFirestore() {
         // 'edtxt_intro'의 내용을 Firestore에 저장
@@ -95,8 +132,7 @@ public class MyPage_Introduce extends AppCompatActivity {
                     // 저장 중 오류 발생 시 수행할 작업
                 });
     }
-    private void addNewCareerBox() {
-        careerCount++;
+    private void addNewCareerBox(String initialData) {
 
         // 새로운 career 상자 생성
         EditText newCareer = new EditText(this);
@@ -115,6 +151,8 @@ public class MyPage_Introduce extends AppCompatActivity {
         newCareer.setBackgroundResource(R.drawable.et_board);
         newCareer.setTextColor(Color.parseColor("#BBBBBB")); // 텍스트 색상
         newCareer.setMaxLines(1);
+        newCareer.setText(initialData); // 초기 데이터 설정
+
 
         // 새로운 career 상자에 이미지 아이콘 추가
         int drawableId = getResources().getIdentifier("no" + (careerCount + 1), "drawable", getPackageName());
@@ -122,9 +160,11 @@ public class MyPage_Introduce extends AppCompatActivity {
         newCareer.setCompoundDrawablePadding(dpToPx(10));
         newCareer.setPadding(dpToPx(10), 0, dpToPx(10), 0);
 
-        // 새로운 career 상자를 LinearLayout에 추가
+        // 생성된 career 상자를 LinearLayout에 추가
         careerContainer.addView(newCareer, careerContainer.getChildCount() - 1);
-        careerCount++;
+        careerEditTexts = Arrays.copyOf(careerEditTexts, careerEditTexts.length + 1); // 배열 크기 확장
+        careerEditTexts[careerEditTexts.length - 1] = newCareer;
+
     }
 
     private int dpToPx(int dp) {
