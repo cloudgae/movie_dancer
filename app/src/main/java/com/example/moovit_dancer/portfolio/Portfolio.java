@@ -10,67 +10,189 @@ import androidx.viewpager.widget.ViewPager;
 
 import android.content.Context;
 import android.content.Intent;
+import android.database.Cursor;
+import android.graphics.Bitmap;
+import android.media.MediaMetadataRetriever;
+import android.net.Uri;
+import android.os.AsyncTask;
 import android.os.Bundle;
+import android.provider.MediaStore;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageButton;
+import android.os.Environment;
+import android.widget.ImageView;
 
+import com.amazonaws.auth.BasicAWSCredentials;
+import com.amazonaws.regions.Region;
+import com.amazonaws.regions.Regions;
+import com.amazonaws.services.s3.AmazonS3;
+import com.amazonaws.services.s3.AmazonS3Client;
+import com.amazonaws.services.s3.model.PutObjectRequest;
 import com.example.moovit_dancer.R;
 import com.google.android.material.tabs.TabLayout;
+import java.io.File;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 public class Portfolio extends AppCompatActivity {
     ImageButton addbtn;
-    private static final int PICK_VIDEO_REQUEST= 1;
+    private static final int PICK_VIDEO_REQUEST = 1;
+    private File videoFile; // 동영상 파일 변수 추가
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_portfolio);
 
-
         ViewPager pager = findViewById(R.id.pager);
         TabLayout tabLayout = findViewById(R.id.tab_layout);
-        addbtn = (ImageButton) findViewById(R.id.addbtn);
+        addbtn = findViewById(R.id.addbtn);
 
-        pager.setOffscreenPageLimit(2); //현재 페이지의 양쪽에 보유해야하는 페이지 수를 설정 (상황에 맞게 사용하시면 됩니다.)
-        tabLayout.setupWithViewPager(pager); //텝레이아웃과 뷰페이저를 연결
-        pager.setAdapter(new Portfolio.PageAdapter(getSupportFragmentManager(),this)); //뷰페이저 어뎁터 설정 연결
+        pager.setOffscreenPageLimit(2);
+        tabLayout.setupWithViewPager(pager);
+        pager.setAdapter(new PageAdapter(getSupportFragmentManager(), this));
 
         addbtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
                 openGallery();
             }
         });
-
     }
+
     private void openGallery() {
         Intent intent = new Intent();
-        intent.setType("video/*"); // 동영상 파일만 선택 가능하도록 설정
+        intent.setType("video/*");
         intent.setAction(Intent.ACTION_GET_CONTENT);
-        startActivityForResult(Intent.createChooser(intent, "동영상 선택"),PICK_VIDEO_REQUEST);
+        startActivityForResult(Intent.createChooser(intent, "동영상 선택"), PICK_VIDEO_REQUEST);
     }
 
-    static class PageAdapter extends FragmentStatePagerAdapter { //뷰 페이저 어뎁터
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if (requestCode == PICK_VIDEO_REQUEST && resultCode == RESULT_OK && data != null) {
+            Uri videoUri = data.getData();
+            String videoPath = getRealPathFromURI(videoUri);
+            if (videoPath != null) {
+                videoFile = new File(videoPath);
+
+                // 썸네일 생성
+                Bitmap thumbnail = createThumbnail(videoFile);
+
+                // 썸네일을 Portfolio_upload.java로 전달
+                Intent intent = new Intent(this, Portfolio_upload.class);
+                intent.putExtra("thumbnail", thumbnail);
+                startActivity(intent);
+            } else {
+                // 오류 처리: videoPath가 null일 경우
+                Log.e("dd", "실패");
+            }
+        }
+    }
 
 
-        PageAdapter(FragmentManager fm, Context context) {
-            super(fm, BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT);
+    // (이전 코드 부분 생략)
 
+    private class LoadThumbnailTask extends AsyncTask<File, Void, Bitmap> {
+        @Override
+        protected Bitmap doInBackground(File... files) {
+            if (files.length > 0) {
+                File videoFile = files[0];
+                Bitmap thumbnail = createThumbnail(videoFile);
+                return thumbnail;
+            }
+            return null;
         }
 
+
+        @Override
+        protected void onPostExecute(Bitmap bitmap) {
+            if (bitmap != null) {
+                ImageView videoThumbnail = findViewById(R.id.video_thumbnail);
+                if (videoThumbnail != null) {
+                    // 썸네일 비트맵을 ImageView에 설정
+                    videoThumbnail.setImageBitmap(bitmap);
+                }
+            }
+        }
+
+
+    }
+
+
+    private Bitmap createThumbnail(File videoFile) {
+        MediaMetadataRetriever retriever = new MediaMetadataRetriever();
+        retriever.setDataSource(videoFile.getAbsolutePath());
+
+        // 동영상의 썸네일을 가져옵니다. 시간(ms)을 지정할 수 있습니다.
+        // 예: 10000 ms (10초)
+        Bitmap thumbnail = retriever.getFrameAtTime(10000000, MediaMetadataRetriever.OPTION_CLOSEST_SYNC);
+
+        // 썸네일을 조정할 수 있습니다. (크기, 비율 등)
+        // 예: 썸네일 크기 조정 (썸네일 크기를 맞춰야 할 경우)
+        int desiredWidth = 320; // 원하는 너비
+        int desiredHeight = 173; // 원하는 높이
+        thumbnail = Bitmap.createScaledBitmap(thumbnail, desiredWidth, desiredHeight, false);
+
+        return thumbnail;
+    }
+
+
+    // AsyncTask를 사용하여 백그라운드에서 S3 업로드 처리
+    private class UploadVideoTask extends AsyncTask<File, Void, Void> {
+        @Override
+        protected Void doInBackground(File... files) {
+            if (files.length > 0) {
+                File videoFile = files[0];
+
+                // AWS S3 클라이언트 생성
+                BasicAWSCredentials credentials = new BasicAWSCredentials("AKIA3VFT4KKFUQGSJP6U", "4OIv39jOl1GwrpDeUCToEVhsTvxNFLAcAe0e9eg1");
+                AmazonS3 s3Client = new AmazonS3Client(credentials, Region.getRegion(Regions.AP_NORTHEAST_2));
+
+                // 업로드할 S3 버킷 이름 및 객체 키 설정
+                String bucketName = "moovitbucket2";
+                String objectKey = generateObjectKey(videoFile.getAbsolutePath());
+
+                // 동영상 업로드
+                s3Client.putObject(new PutObjectRequest(bucketName, objectKey, videoFile));
+            }
+            return null;
+        }
+    }
+
+    // URI를 실제 파일 경로로 변환
+    private String getRealPathFromURI(Uri contentUri) {
+        String[] projection = {MediaStore.Video.Media.DATA};
+        Cursor cursor = getContentResolver().query(contentUri, projection, null, null, null);
+        int columnIndex = cursor.getColumnIndexOrThrow(MediaStore.Video.Media.DATA);
+        cursor.moveToFirst();
+        String filePath = cursor.getString(columnIndex);
+        cursor.close();
+        return filePath;
+    }
+
+    // 고유한 객체 키 생성
+    private String generateObjectKey(String videoPath) {
+        String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
+        return "videos/" + timeStamp + "_" + videoFile.getName();
+    }
+
+    static class PageAdapter extends FragmentStatePagerAdapter {
+        PageAdapter(FragmentManager fm, Context context) {
+            super(fm, BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT);
+        }
 
         @NonNull
         @Override
         public Fragment getItem(int position) {
-            if (position == 0) { //프래그먼트 사용 포지션 설정 0 이 첫탭
+            if (position == 0) {
                 return new Portfolio_tab1();
             } else {
                 return new Portfolio_tab2();
             }
-
         }
-
 
         @Override
         public int getCount() {
@@ -80,7 +202,7 @@ public class Portfolio extends AppCompatActivity {
         @Nullable
         @Override
         public CharSequence getPageTitle(int position) {
-            if (position == 0) { //텝 레이아웃의 타이틀 설정
+            if (position == 0) {
                 return "포트폴리오";
             } else {
                 return "진행중인 클래스";
