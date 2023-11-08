@@ -33,9 +33,20 @@
         app:tabTextAppearance="@style/NotoSansRegularTabStyle"
         app:tabTextColor="#707070" />
 
-    <androidx.viewpager.widget.ViewPager
-        android:id="@+id/pager"
+    <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+        android:layout_height="match_parent">
+        <androidx.viewpager.widget.ViewPager
+            android:id="@+id/pager"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+        <ImageButton
+            android:id="@+id/addbtn"
+            android:layout_margin="20dp"
+            android:layout_gravity="right|bottom"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:srcCompat="@drawable/addbtn"
+            android:backgroundTint="@color/black"/>
+    </FrameLayout>
 </LinearLayout>
-

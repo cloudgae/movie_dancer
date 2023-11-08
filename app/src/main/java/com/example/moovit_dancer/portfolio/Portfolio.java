@@ -9,12 +9,17 @@ import androidx.fragment.app.FragmentStatePagerAdapter;
 import androidx.viewpager.widget.ViewPager;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.ImageButton;
 
 import com.example.moovit_dancer.R;
 import com.google.android.material.tabs.TabLayout;
 
 public class Portfolio extends AppCompatActivity {
+    ImageButton addbtn;
+    private static final int PICK_VIDEO_REQUEST= 1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,14 +29,28 @@ public class Portfolio extends AppCompatActivity {
 
         ViewPager pager = findViewById(R.id.pager);
         TabLayout tabLayout = findViewById(R.id.tab_layout);
-
+        addbtn = (ImageButton) findViewById(R.id.addbtn);
 
         pager.setOffscreenPageLimit(2); //현재 페이지의 양쪽에 보유해야하는 페이지 수를 설정 (상황에 맞게 사용하시면 됩니다.)
         tabLayout.setupWithViewPager(pager); //텝레이아웃과 뷰페이저를 연결
         pager.setAdapter(new Portfolio.PageAdapter(getSupportFragmentManager(),this)); //뷰페이저 어뎁터 설정 연결
 
+        addbtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                openGallery();
+            }
+        });
 
     }
+    private void openGallery() {
+        Intent intent = new Intent();
+        intent.setType("video/*"); // 동영상 파일만 선택 가능하도록 설정
+        intent.setAction(Intent.ACTION_GET_CONTENT);
+        startActivityForResult(Intent.createChooser(intent, "동영상 선택"),PICK_VIDEO_REQUEST);
+    }
+
     static class PageAdapter extends FragmentStatePagerAdapter { //뷰 페이저 어뎁터
 
 
