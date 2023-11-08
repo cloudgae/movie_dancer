@@ -26,7 +26,7 @@ public class Onboarding extends AppCompatActivity {
     LinearLayout careerContainer;
     Button addCareerButton;
     Button finishBtn;
-    int careerCount = 0; // 초기 career 상자 개수
+    int careerCount = 1; // 초기 career 상자 개수
 
     FirebaseFirestore firestore;
     CollectionReference dancerCollection;
@@ -95,7 +95,7 @@ public class Onboarding extends AppCompatActivity {
                 });
     }
     private void addNewCareerBox() {
-        careerCount++;
+//        careerCount++;
 
         // 새로운 career 상자 생성
         EditText newCareer = new EditText(this);
