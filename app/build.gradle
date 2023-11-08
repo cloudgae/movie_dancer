@@ -55,4 +55,19 @@ dependencies {
     //calendar
     implementation 'com.github.prolificinteractive:material-calendarview:2.0.1'
     implementation 'com.jakewharton.threetenabp:threetenabp:1.2.1'
+
+//    implementation 'com.amazonaws:aws-android-sdk-s3:' // AWS S3 SDK를 추가
+
+    implementation 'com.amazonaws:aws-android-sdk-core:2.2.+'
+    implementation 'com.amazonaws:aws-android-sdk-s3:2.2.+'
+    implementation 'com.amazonaws:aws-android-sdk-ddb:2.2.+'
+
+    implementation 'com.amazonaws:aws-android-sdk-s3:2.29.0'
+    implementation 'com.amazonaws:aws-android-sdk-core:2.29.0'
+
+    implementation 'com.amazonaws:aws-android-sdk-mobile-client:2.13.5'
+    implementation 'com.amazonaws:aws-android-sdk-cognito:2.13.5'
+    implementation 'com.amazonaws:aws-android-sdk-s3:2.13.5'
+
+
 }
