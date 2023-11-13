@@ -76,7 +76,8 @@
                 style="@style/Widget.AppCompat.ProgressBar.Horizontal"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:progress="20" />
+                android:progress="25"
+                android:scaleY="0.5"/>
 
             <TableLayout
                 android:layout_width="match_parent"

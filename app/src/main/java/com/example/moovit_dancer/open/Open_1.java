@@ -8,10 +8,20 @@ import androidx.core.content.ContextCompat;
 
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Canvas;
+import android.graphics.Color;
+import android.graphics.Paint;
+import android.graphics.PorterDuff;
+import android.graphics.PorterDuffXfermode;
+import android.graphics.Rect;
+import android.graphics.RectF;
+import android.media.MediaMetadataRetriever;
 import android.media.ThumbnailUtils;
 import android.net.Uri;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.text.TextUtils;
@@ -23,10 +33,20 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import com.amazonaws.auth.BasicAWSCredentials;
+import com.amazonaws.regions.Region;
+import com.amazonaws.regions.Regions;
+import com.amazonaws.services.s3.AmazonS3;
+import com.amazonaws.services.s3.AmazonS3Client;
+import com.amazonaws.services.s3.model.PutObjectRequest;
 import com.example.moovit_dancer.MainActivity;
+
 import android.Manifest;
+
 import com.example.moovit_dancer.R;
 import com.example.moovit_dancer.VideoInfo;
+import com.example.moovit_dancer.portfolio.Portfolio;
+import com.example.moovit_dancer.portfolio.Portfolio_upload;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.firestore.DocumentReference;
@@ -35,7 +55,10 @@ import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 
+import java.io.File;
 import java.io.InputStream;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
@@ -51,22 +74,60 @@ public class Open_1 extends AppCompatActivity {
     private static final int REQUEST_VIDEO_PICK = 1;
     private ImageView thumbnailImageView;
     private Uri selectedVideoUri;
+    private ImageView picImageView;
+    private File videoFile; // 동영상 파일 변수 추가
 
-//    @Override
-//    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-//        super.onActivityResult(requestCode, resultCode, data);
-//
-//        if(requestCode == REQUEST_VIDEO_PICK && requestCode == RESULT_OK){
-//            if(data != null){
-//                selectedVideoUri = data.getData();
-//
-//                //영상의 썸네일 생성 및 표시
-//                Bitmap thumbnail = ThumbnailUtils.createVideoThumbnail(selectedVideoUri.getPath(),
-//                        MediaStore.Video.Thumbnails.MICRO_KIND);
-//                thumbnailImageView.setImageBitmap(thumbnail);
-//            }
-//        }
-//    }
+    private static final int REQUEST_IMAGE_PICK = 2;
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if (requestCode == REQUEST_VIDEO_PICK && resultCode == RESULT_OK && data != null) {
+            Uri videoUri = data.getData();
+            String videoPath = getRealPathFromURI(videoUri);
+            if (videoPath != null) {
+                videoFile = new File(videoPath);
+
+                // 비동기 작업으로 S3 업로드 실행
+                new UploadVideoTask_1().execute(videoFile);
+
+                // 썸네일 생성
+                Bitmap thumbnail = createRoundedThumbnail(videoFile);
+
+                // 썸네일을 Portfolio_upload.java로 전달
+                //썸네일을 이미지뷰에 설정
+                thumbnailImageView.setImageBitmap(thumbnail);
+//                Intent intent = new Intent(this, Portfolio_upload.class);
+//                intent.putExtra("thumbnail", thumbnail);
+//                startActivity(intent);
+            } else {
+                // 오류 처리: videoPath가 null일 경우
+                Log.e("dd", "동영상 파일 경로가 null입니다. 선택된 동영상이 올바른지 확인하세요. Uri: " + videoUri);
+            }
+        }
+
+        if (requestCode == REQUEST_IMAGE_PICK && resultCode == RESULT_OK && data != null) {
+            Uri imageUri = data.getData();
+            String imagePath = getRealPathFromURI(imageUri);
+
+            if (imagePath != null) {
+                File imageFile = new File(imagePath);
+
+                // 비동기 작업으로 S3 업로드 실행
+                new UploadImageTask().execute(imageFile);
+
+                // 이미지 업로드 후 이미지 뷰에 설정
+                Bitmap croppedAndResizedBitmap = cropAndResizeBitmap(imageFile);
+                picImageView.setImageBitmap(croppedAndResizedBitmap);
+            } else {
+                // 오류 처리: imagePath가 null일 경우
+                Log.e("openImageGallery", "실패");
+            }
+        }
+
+    }
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -80,7 +141,7 @@ public class Open_1 extends AppCompatActivity {
         addpic = (ImageView) findViewById(R.id.addpic);
 
 //        //1028
-//        thumbnailImageView = findViewById(R.id.thumbnailImageView);
+        thumbnailImageView = findViewById(R.id.thumbnailImageView);
 //
         FirebaseFirestore db = FirebaseFirestore.getInstance();
         Map<String, Object> data = new HashMap<>();
@@ -91,54 +152,22 @@ public class Open_1 extends AppCompatActivity {
 
         DocumentReference docRef = db.collection("Class").document(documentId);
 
-//        // AWS S3 버킷 및 자격 증명 설정
-//        CognitoCachingCredentialsProvider credentialsProvider = new CognitoCachingCredentialsProvider(
-//                context, "AWS_IDENTITY_POOL_ID", Regions.YOUR_REGION);
 
+        addvid.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                openGallery();
+            }
+        });
 
-//
-//        addvid.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                Intent pickVideoIntent = new Intent(Intent.ACTION_PICK,
-//                        MediaStore.Video.Media.EXTERNAL_CONTENT_URI);
-//                startActivityForResult(pickVideoIntent, REQUEST_VIDEO_PICK);
-//            }
-//        });
-//
-//        // onActivityResult에서 선택한 영상 처리
-//        if(selectedVideoUri != null){
-//            StorageReference storageRef = FirebaseStorage.getInstance().getReference();
-//            StorageReference videoRef = storageRef.child("videos/" + UUID.randomUUID() + ".mp4");
-//
-//            videoRef.putFile(selectedVideoUri)
-//                    .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
-//                        @Override
-//                        public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-//                            //업로드가 성공한 경우
-//                            // 업로드된 영상의 다운로드 URL 얻기
-//                            videoRef.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
-//                                @Override
-//                                public void onSuccess(Uri uri) {
-//                                    String videoUrl = uri.toString();
-//
-//                                    // 썸네일 생성 및 Firebase Firestore에 정보 저장
-//                                    // 아래에서 설명합니다.
-//                                    saveVideoInfoToFirestore(videoUrl);
-//                                }
-//                            });
-//                        }
-//                    })
-//                    .addOnFailureListener(new OnFailureListener() {
-//                        @Override
-//                        public void onFailure(@NonNull Exception e) {
-//                            Log.d("fail", "영상 업로드 실패");
-//                        }
-//                    });
-//        }
-//
-//        //
+        picImageView = findViewById(R.id.picImageView);
 
+        addpic.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                openImageGallery();
+            }
+        });
         backkey.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -163,12 +192,208 @@ public class Open_1 extends AppCompatActivity {
         });
 
     }
-    private void saveVideoInfoToFirestore(String videoUrl) {
-        // 썸네일 생성 및 Firebase Firestore에 정보 저장
-        // 아래 예시에서는 썸네일 URL을 빈 문자열로 저장하도록 합니다.
-        VideoInfo videoInfo = new VideoInfo(videoUrl, "");
 
-        // Firebase Firestore에 VideoInfo 저장
-        videoInfo.saveToFirestore();
+    private void openGallery() {
+        Intent intent = new Intent();
+        intent.setType("video/*");
+        intent.setAction(Intent.ACTION_GET_CONTENT);
+        startActivityForResult(Intent.createChooser(intent, "동영상 선택"), REQUEST_VIDEO_PICK);
     }
+    private void openImageGallery() {
+        Intent intent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+        startActivityForResult(intent, REQUEST_IMAGE_PICK);
+    }
+    private Bitmap createRoundedThumbnail(File videoFile) {
+        if (videoFile != null && videoFile.exists()) {
+            try{
+            MediaMetadataRetriever retriever = new MediaMetadataRetriever();
+            retriever.setDataSource(videoFile.getAbsolutePath());
+
+            // 동영상의 썸네일을 가져옵니다. 시간(ms)을 지정할 수 있습니다.
+            // 예: 10000 ms (10초)
+            Bitmap originalThumbnail = retriever.getFrameAtTime(0, MediaMetadataRetriever.OPTION_CLOSEST_SYNC);
+
+            // 일부분만 크롭하여 원하는 크기의 이미지 생성
+            int desiredSize = dpToPx(80); // 80dp를 픽셀로 변환
+            Bitmap croppedThumbnail = cropBitmap(originalThumbnail, desiredSize);
+
+            // 둥근 모서리 적용
+            Bitmap roundedThumbnail = getRoundedCornerBitmap(croppedThumbnail, dpToPx(5)); // 10dp를 픽셀로 변환하여 반지름 설정
+
+            return roundedThumbnail;
+            } catch (Exception e) {
+                Log.e("createRoundedThumbnail", "Error creating thumbnail: " + e.getMessage());
+                e.printStackTrace();
+            }
+        } else {
+            Log.e("createRoundedThumbnail", "Video file is null or does not exist.");
+        }
+        return null;
+    }
+    // 둥근 모서리 적용
+    private Bitmap getRoundedCornerBitmap(Bitmap bitmap, int radius) {
+        Bitmap roundedBitmap = Bitmap.createBitmap(bitmap.getWidth(), bitmap.getHeight(), Bitmap.Config.ARGB_8888);
+        Canvas canvas = new Canvas(roundedBitmap);
+
+        Paint paint = new Paint();
+        paint.setAntiAlias(true);
+        paint.setColor(Color.WHITE); // 둥근 부분의 배경색을 설정할 수 있습니다.
+
+        Rect rect = new Rect(0, 0, bitmap.getWidth(), bitmap.getHeight());
+        RectF rectF = new RectF(rect);
+
+        // 사각형에서 둥근 부분을 제외하고 투명하게 처리
+        canvas.drawRoundRect(rectF, radius, radius, paint);
+        paint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.SRC_IN));
+
+        // 둥근 부분에 원본 비트맵 적용
+        canvas.drawBitmap(bitmap, null, rect, paint);
+
+        return roundedBitmap;
+    }
+    // 비트맵 일부분 크롭
+    private Bitmap cropBitmap(Bitmap original, int desiredSize) {
+        if (original == null) {
+            return null;
+        }
+
+        int originalWidth = original.getWidth();
+        int originalHeight = original.getHeight();
+
+        // 크롭할 부분의 좌표 계산 (가운데 기준)
+        int left = (originalWidth - desiredSize) / 2;
+        int top = (originalHeight - desiredSize) / 2;
+
+        // 비트맵 일부분 크롭
+        return Bitmap.createBitmap(original, left, top, desiredSize, desiredSize);
+    }
+    // dp를 px로 변환
+    private int dpToPx(int dp) {
+        float density = getResources().getDisplayMetrics().density;
+        return Math.round(dp * density);
+    }
+    // AsyncTask를 사용하여 백그라운드에서 S3 업로드 처리
+    private class UploadVideoTask_1 extends AsyncTask<File, Void, Void> {
+        @Override
+        protected Void doInBackground(File... files) {
+            if (files.length > 0) {
+                File videoFile = files[0];
+
+                // AWS S3 클라이언트 생성
+                BasicAWSCredentials credentials = new BasicAWSCredentials("AKIA3VFT4KKFUQGSJP6U", "4OIv39jOl1GwrpDeUCToEVhsTvxNFLAcAe0e9eg1");
+                AmazonS3 s3Client = new AmazonS3Client(credentials, Region.getRegion(Regions.AP_NORTHEAST_2));
+
+                // 업로드할 S3 버킷 이름 및 객체 키 설정
+                String bucketName = "moovitbucket2";
+//                String objectKey = generateObjectKey(videoFile.getAbsolutePath());
+                String objectKey = generateObjectKey(videoFile.getAbsolutePath(), "videos");
+
+                // 동영상 업로드
+//                s3Client.putObject(new PutObjectRequest(bucketName, objectKey, videoFile));
+                // 동영상 업로드
+//                s3Client.putObject(new PutObjectRequest(bucketName, "videos/" + generateObjectKey(videoFile.getAbsolutePath()), videoFile));
+//                s3Client.putObject(new PutObjectRequest(bucketName, generateObjectKey(videoFile.getAbsolutePath(), "videos"), videoFile));
+                s3Client.putObject(new PutObjectRequest(bucketName, generateObjectKey(videoFile.getAbsolutePath(), "videos"), videoFile));
+
+            }
+            return null;
+        }
+    }
+
+    private class UploadImageTask extends AsyncTask<File, Void, Void> {
+        @Override
+        protected Void doInBackground(File... files) {
+            if (files.length > 0) {
+                File imageFile = files[0];
+
+                // AWS S3 클라이언트 생성
+                BasicAWSCredentials credentials = new BasicAWSCredentials("AKIA3VFT4KKFUQGSJP6U", "4OIv39jOl1GwrpDeUCToEVhsTvxNFLAcAe0e9eg1");
+                AmazonS3 s3Client = new AmazonS3Client(credentials, Region.getRegion(Regions.AP_NORTHEAST_2));
+
+                // 업로드할 S3 버킷 이름 및 객체 키 설정
+                String bucketName = "moovitbucket2";
+                // 이미지 업로드
+                s3Client.putObject(new PutObjectRequest(bucketName, generateObjectKey(imageFile.getAbsolutePath(), "images"), imageFile));
+//                s3Client.putObject(new PutObjectRequest(bucketName, "images/" + generateObjectKey(imageFile.getAbsolutePath()), imageFile));
+            }
+            return null;
+        }
+    }
+
+    // URI를 실제 파일 경로로 변환
+    private String getRealPathFromURI(Uri contentUri) {
+        String[] projection = {MediaStore.Video.Media.DATA};
+        Cursor cursor = getContentResolver().query(contentUri, projection, null, null, null);
+        int columnIndex = cursor.getColumnIndexOrThrow(MediaStore.Video.Media.DATA);
+        cursor.moveToFirst();
+        String filePath = cursor.getString(columnIndex);
+        cursor.close();
+        return filePath;
+    }
+
+    // 고유한 객체 키 생성
+    private String generateObjectKey(String filePath, String fileType) {
+        if (filePath != null) {
+            String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
+            // 이미지 파일인 경우
+            if (fileType.equals("images")) {
+//                return "C7image/" + timeStamp + "_" + new File(filePath).getName();
+                return "C7image/" + "C7image";
+            }
+            // 동영상 파일인 경우
+            else if (fileType.equals("videos")) {
+//                return "C7video/" + timeStamp + "_" + new File(filePath).getName();
+                return "C7video/" + "C7video";
+            }
+
+            // 기본적으로는 fileType을 그대로 사용
+            return fileType + "/" + timeStamp + "_" + new File(filePath).getName();
+        } else {
+            // filePath가 null인 경우 예외 처리
+            Log.e("generateObjectKey", "filePath is null");
+            return "";
+        }
+    }
+
+
+    private Bitmap cropAndResizeBitmap(File imageFile) {
+        Bitmap originalBitmap = BitmapFactory.decodeFile(imageFile.getAbsolutePath());
+
+        // 이미지 일부분 크롭
+        Bitmap croppedBitmap = cropBitmap(originalBitmap);
+
+        // 크기 조절
+        int desiredSize = dpToPx(80);
+        Bitmap resizedBitmap = resizeBitmap(croppedBitmap, desiredSize);
+
+        // 둥근 모서리 적용
+        Bitmap roundedBitmap = getRoundedCornerBitmap(resizedBitmap, dpToPx(5)); // 5dp를 픽셀로 변환하여 반지름 설정
+
+        return roundedBitmap;
+    }
+    private Bitmap cropBitmap(Bitmap originalBitmap) {
+        // 이미지 일부분 크롭
+        // 예: 이미지 중앙의 부분을 크롭
+        int width = originalBitmap.getWidth();
+        int height = originalBitmap.getHeight();
+
+        int size = Math.min(width, height); // 가로, 세로 중 작은 값 선택
+        int left = (width - size) / 2;
+        int top = (height - size) / 2;
+        int right = left + size;
+        int bottom = top + size;
+
+        // 크롭
+        Bitmap croppedBitmap = Bitmap.createBitmap(originalBitmap, left, top, right - left, bottom - top);
+
+        return croppedBitmap;
+    }
+
+    private Bitmap resizeBitmap(Bitmap originalBitmap, int desiredSize) {
+        // 크기 조절
+        Bitmap resizedBitmap = Bitmap.createScaledBitmap(originalBitmap, desiredSize, desiredSize, true);
+
+        return resizedBitmap;
+    }
+
 }

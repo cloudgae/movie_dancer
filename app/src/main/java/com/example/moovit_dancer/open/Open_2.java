@@ -58,6 +58,7 @@ public class Open_2 extends AppCompatActivity {
                 String text = edtxt_hash.getText().toString();
                 if (!text.isEmpty()) {
                     // TextView 및 X 버튼을 포함하는 레이아웃 생성
+                    //TODO : 해시태그 추가/삭제 시 파이어스토어에도 연결 필요
                     LinearLayout container = new LinearLayout(Open_2.this);
                     container.setOrientation(LinearLayout.HORIZONTAL);
 
@@ -69,7 +70,7 @@ public class Open_2 extends AppCompatActivity {
                     GradientDrawable shape = new GradientDrawable();
                     shape.setShape(GradientDrawable.RECTANGLE);
                     shape.setCornerRadius(40);
-                    shape.setColor(Color.parseColor("#E87FEA"));
+                    shape.setColor(Color.parseColor("#6FD5EB"));
                     shape.setAlpha(80);
 
                     textView.setBackground(shape);

@@ -12,6 +12,7 @@ import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
+import android.widget.ProgressBar;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Spinner;
@@ -33,7 +34,7 @@ import java.util.Map;
 public class Open_0 extends AppCompatActivity {
 
     String[] items = {"K-POP", "스트릿", "코레오"};
-    String[] items2 = {"입문", "중급", "고급"};
+    String[] items2 = {"상", "중", "하"};
     ImageButton backkey, nextkey0;
     RadioGroup Rg_p, Rg_t;
     RadioButton R_p1, R_pn, R_t1, R_tn;
@@ -55,7 +56,7 @@ public class Open_0 extends AppCompatActivity {
 //        Map<String, Object> data = new HashMap<>();
 //        DocumentReference classRef = db.collection("Class").document("C");
         //새로운 문서에 대한 참조 생성
-        DocumentReference newClassRef = db.collection("Class").document();
+        DocumentReference newClassRef = db.collection("Class").document("C7");
 //        새로운 문서의 id 가져오기
         String newClassId = newClassRef.getId();
         Map<String, Object> data = new HashMap<>();
@@ -119,16 +120,16 @@ public class Open_0 extends AppCompatActivity {
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 switch (i) {
                     case 0:
-                        data.put("diff", "상");
+                        data.put("difficulty", "상");
                         newClassRef.set(data);
 //                        classRef.update("genre", "kpop");
                         break;
                     case 1:
-                        data.put("diff", "중");
+                        data.put("difficulty", "중");
                         newClassRef.set(data);
                         break;
                     case 2:
-                        data.put("diff", "하");
+                        data.put("difficulty", "하");
                         newClassRef.set(data);
                         break;
                 };
@@ -136,7 +137,7 @@ public class Open_0 extends AppCompatActivity {
 
             @Override
             public void onNothingSelected(AdapterView<?> adapterView) {
-                    data.put("diff", "상");
+                    data.put("difficulty", "상");
                 newClassRef.set(data);
             }
         });
@@ -161,11 +162,11 @@ public class Open_0 extends AppCompatActivity {
             @Override
             public void onCheckedChanged(RadioGroup radioGroup, int i) {
                 if(i == R.id.R_t1){
-                    data.put("time", "1");
+                    data.put("frequency", "1");
                     newClassRef.set(data);
                 }
                 else{
-                    data.put("time", "n");
+                    data.put("frequency", "n");
                     newClassRef.set(data);
                 }
             }
@@ -186,6 +187,8 @@ public class Open_0 extends AppCompatActivity {
         nextkey0.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                data.put("open", true);
+                newClassRef.set(data);
                 //new Intent(현재 context, 이동할 activity)
                 Intent i = new Intent(Open_0.this, Open_1.class);
                 i.putExtra("documentId", newClassId);

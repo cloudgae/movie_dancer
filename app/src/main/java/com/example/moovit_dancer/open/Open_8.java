@@ -35,7 +35,10 @@ public class Open_8 extends AppCompatActivity {
 
         FirebaseFirestore db = FirebaseFirestore.getInstance();
         Map<String, Object> data = new HashMap<>();
-        DocumentReference classRef = db.collection("Class").document("C");
+        // 현재 액티비티에서 문서 ID를 받음
+        String documentId = getIntent().getStringExtra("documentId");
+        DocumentReference docRef = db.collection("Class").document(documentId);
+//        DocumentReference classRef = db.collection("Class").document("C");
 
         backkey.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -51,7 +54,7 @@ public class Open_8 extends AppCompatActivity {
             public void onClick(View view) {
                 fee = Integer.parseInt(edtxt_fee.getText().toString());
                 data.put("fee", fee);
-                classRef.update(data);
+                docRef.update(data);
 
                 AlertDialog.Builder dlg = new AlertDialog.Builder(Open_8.this); dlg.setTitle("클래스 개설 요청 완료!");
                 dlg.setMessage("클래스가 개설 요청 완료되었어요. 내 클래스의\n" +

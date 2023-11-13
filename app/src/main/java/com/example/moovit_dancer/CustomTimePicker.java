@@ -11,6 +11,8 @@ public class CustomTimePicker extends LinearLayout {
     private NumberPicker hourPicker;
     private NumberPicker minutePicker;
     private int margin = 20; // 원하는 마진 크기 (픽셀)
+    public static final int AM = 0;
+    public static final int PM = 1;
 
     public CustomTimePicker(Context context, AttributeSet attrs) {
         super(context, attrs);

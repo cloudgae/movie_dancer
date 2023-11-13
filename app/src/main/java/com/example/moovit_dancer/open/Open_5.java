@@ -13,6 +13,7 @@ import com.example.moovit_dancer.R;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 
+import java.util.Calendar;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -43,8 +44,17 @@ public class Open_5 extends AppCompatActivity {
             @Override
             public void onSelectedDayChange(@NonNull CalendarView calendarView, int i, int i1, int i2) {
                 selectedDate = i + "-" + (i1 + 1) + "-" + i2;
+
+                data.put("date", selectedDate);
+                docRef.update(data);
             }
         });
+        if (selectedDate == null) {
+            Calendar today = Calendar.getInstance();
+            selectedDate = today.get(Calendar.YEAR) + "-" + (today.get(Calendar.MONTH) + 1) + "-" + today.get(Calendar.DAY_OF_MONTH);
+            data.put("date", selectedDate);
+            docRef.update(data);
+        }
 
         backkey.setOnClickListener(new View.OnClickListener() {
             @Override

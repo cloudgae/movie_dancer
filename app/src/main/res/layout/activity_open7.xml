@@ -76,7 +76,8 @@
                 style="@style/Widget.AppCompat.ProgressBar.Horizontal"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:progress="20" />
+                android:progress="75"
+                android:scaleY="0.5"/>
 
             <TableLayout
                 android:layout_width="match_parent"
@@ -141,26 +142,31 @@
                 android:layout_marginHorizontal="20dp">
 
 
-                <Button
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                <TextView
+                    android:id="@+id/startdate"
+                    android:layout_width="150dp"
+                    android:layout_height="42dp"
                     android:fontFamily="@font/notosanskr_regular"
                     android:text="yyyy-mm-dd"
-                    android:theme="@style/timebuttonTheme"
+                    android:gravity="center"
+                    android:background="@drawable/et_board"
                     android:textColor="#707070"/>
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/notosanskr_regular"
-                    android:text="~" />
+                    android:text="~"
+                    android:layout_marginHorizontal="5dp"/>
 
-                <Button
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                <TextView
+                    android:id="@+id/enddate"
+                    android:layout_width="150dp"
+                    android:layout_height="42dp"
                     android:fontFamily="@font/notosanskr_regular"
                     android:text="yyyy-mm-dd"
-                    android:theme="@style/timebuttonTheme"
+                    android:gravity="center"
+                    android:background="@drawable/et_board"
                     android:textColor="#707070"/>
             </LinearLayout>
 
@@ -187,26 +193,31 @@
                 android:layout_marginHorizontal="20dp">
 
 
-                <Button
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                <TextView
+                    android:id="@+id/minstudent"
+                    android:layout_width="150dp"
+                    android:layout_height="42dp"
                     android:fontFamily="@font/notosanskr_regular"
                     android:text="최소 인원"
-                    android:theme="@style/timebuttonTheme"
+                    android:gravity="center"
+                    android:background="@drawable/et_board"
                     android:textColor="#707070"/>
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/notosanskr_regular"
-                    android:text="~" />
+                    android:text="~"
+                    android:layout_marginHorizontal="5dp"/>
 
-                <Button
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                <TextView
+                    android:id="@+id/maxstudent"
+                    android:layout_width="150dp"
+                    android:layout_height="42dp"
                     android:fontFamily="@font/notosanskr_regular"
                     android:text="최대 인원"
-                    android:theme="@style/timebuttonTheme"
+                    android:gravity="center"
+                    android:background="@drawable/et_board"
                     android:textColor="#707070"/>
             </LinearLayout>
 

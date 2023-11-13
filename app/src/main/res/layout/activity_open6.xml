@@ -76,7 +76,8 @@
                 style="@style/Widget.AppCompat.ProgressBar.Horizontal"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:progress="20" />
+                android:progress="50"
+                android:scaleY="0.5"/>
 
             <TableLayout
                 android:layout_width="match_parent"
@@ -146,7 +147,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/notosanskr_regular"
-                    android:text="~" />
+                    android:text="~"
+                    android:layout_marginHorizontal="5dp"/>
 
                 <TextView
                     android:id="@+id/time_end"
