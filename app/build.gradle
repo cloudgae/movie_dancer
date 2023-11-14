@@ -58,4 +58,8 @@ dependencies {
 
     implementation 'com.amazonaws:aws-android-sdk-s3:2.22.0'  // AWS SDK for Android S3
 
+    implementation 'com.amazonaws:aws-android-sdk-s3:2.29.0'
+    implementation 'com.github.bumptech.glide:glide:4.12.0'
+    annotationProcessor 'com.github.bumptech.glide:compiler:4.12.0'
+
 }

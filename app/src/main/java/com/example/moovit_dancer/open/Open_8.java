@@ -3,13 +3,16 @@ package com.example.moovit_dancer.open;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 
+import com.example.moovit_dancer.MainActivity;
 import com.example.moovit_dancer.R;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -56,14 +59,35 @@ public class Open_8 extends AppCompatActivity {
                 data.put("fee", fee);
                 docRef.update(data);
 
-                AlertDialog.Builder dlg = new AlertDialog.Builder(Open_8.this); dlg.setTitle("클래스 개설 요청 완료!");
-                dlg.setMessage("클래스가 개설 요청 완료되었어요. 내 클래스의\n" +
-                        "승인 현황은 마이페이지 내 개설 클래스 목록\n" +
-                        "에서 확인 가능해요."); dlg.setIcon(R.mipmap.ic_launcher);
-                dlg.setPositiveButton("바로가기", null);
-                dlg.setNegativeButton("닫기", null);
-                dlg.show();
+                AlertDialog.Builder dlg = new AlertDialog.Builder(Open_8.this, R.style.MyAlertDialogStyle);
+                dlg.setTitle("클래스 개설 완료!");
+                dlg.setMessage("클래스가 개설되었어요. 홈 화면 내 개설 클래스 목록에서 확인 가능해요.");
+//        dlg.setIcon(R.mipmap.ic_launcher);
+                dlg.setPositiveButton("바로가기", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        Intent i2 = new Intent(Open_8.this, MainActivity.class);
+                        startActivity(i2);
+                        finish();
+                    }
+                });
+                dlg.setNegativeButton("취소", null);
+
+                // 긍정 버튼과 부정 버튼의 텍스트 색상 설정
+                AlertDialog alertDialog = dlg.create();
+                alertDialog.setOnShowListener(new DialogInterface.OnShowListener() {
+                    @Override
+                    public void onShow(DialogInterface dialogInterface) {
+                        Button positiveButton = alertDialog.getButton(DialogInterface.BUTTON_POSITIVE);
+                        Button negativeButton = alertDialog.getButton(DialogInterface.BUTTON_NEGATIVE);
+                        positiveButton.setTextColor(getResources().getColor(R.color.positivebtn));
+                        negativeButton.setTextColor(getResources().getColor(R.color.negativebtn));
+                    }
+                });
+
+                alertDialog.show();
             }
         });
+
     }
 }

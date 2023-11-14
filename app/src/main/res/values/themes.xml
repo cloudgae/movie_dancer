@@ -82,5 +82,10 @@
         <item name="android:height">1dp</item> <!-- 높이 조절 -->
     </style>
 
+    <style name="MyAlertDialogStyle" parent="Theme.AppCompat.Light.Dialog.Alert">
+        <!-- 다이얼로그 제목의 글자색 설정 -->
+        <item name="android:textColor">@color/black</item>
+
+    </style>
 
 </resources>

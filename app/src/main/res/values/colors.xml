@@ -7,6 +7,7 @@
     <color name="teal_700">#018786</color>
     <color name="black">#000000</color>
     <color name="white">#FFFFFF</color>
-
+    <color name="positivebtn">#4DC6E0</color>
+    <color name="negativebtn">#BBBBBB</color>
 
 </resources>

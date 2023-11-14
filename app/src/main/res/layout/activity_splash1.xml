@@ -24,7 +24,15 @@
             android:text="홈화면으로"
             android:textColor="#5F5F5F"
             android:textSize="12dp"
-            android:backgroundTint="@color/black"/>
+            android:backgroundTint="@color/black"
+            android:paddingVertical="0dp"/>
+
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="match_parent"
+            android:layout_height="331dp"
+            android:layout_marginHorizontal="0dp"
+            android:src="@drawable/d_onb" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -33,32 +41,21 @@
             android:fontFamily="@font/notosanskr_medium"
             android:text="댄서로서의 첫 걸음,\n무빗과 함께하세요."
             android:textColor="#FFFFFF"
-            android:textSize="22dp" />
+            android:textSize="26dp" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="20dp"
             android:fontFamily="@font/notosanskr_regular"
-            android:text="클래스 개설 신청 전,수강생들에게 보여질\n자기소개를 작성해주세요."
+            android:text="수강생들에게 나를 잘 표현할 수 있도록\n댄서 소개를 작성해보세요."
             android:textColor="#FFFFFF"
-            android:textSize="14dp" />
+            android:textSize="12dp" />
 
-        <HorizontalScrollView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginTop="30dp"
-            >
+
             <!--마진값 조정-->
-            <ImageView
-                android:id="@+id/imageView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginHorizontal="10dp"
-                android:src="@drawable/splashswipeimg2"
-                android:layout_gravity="center_vertical"/>
 
-        </HorizontalScrollView>
+
     </LinearLayout>
 
     <LinearLayout
