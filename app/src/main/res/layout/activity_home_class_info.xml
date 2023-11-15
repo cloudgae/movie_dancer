@@ -11,9 +11,10 @@
     <!-- 상단 고정 부분 -->
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="30dp"
         android:orientation="horizontal"
-        android:layout_marginHorizontal="20dp">
+        android:layout_marginHorizontal="10dp"
+        android:layout_marginVertical="10dp">
 
         <ImageButton
             android:id="@+id/backbtn"
@@ -21,18 +22,9 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:background="@color/black"
-            app:srcCompat="@drawable/ic_sign_back" />
+            app:srcCompat="@drawable/backkey" />
 
-        <TextView
-            android:id="@+id/cname1"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:fontFamily="@font/notosanskr_bold"
-            android:gravity="center"
-            android:text="에스파 타이틀곡 클래스"
-            android:textSize="15dp"
-            android:layout_marginRight="20dp"/>
+
     </LinearLayout>
 
 
@@ -68,14 +60,15 @@
 
             <TextView
                 android:id="@+id/cname2"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="20dp"
                 android:layout_marginTop="20dp"
                 android:layout_marginBottom="5dp"
                 android:fontFamily="@font/notosanskr_medium"
                 android:includeFontPadding="false"
-                android:text="에스파 타이틀곡 클래스"
+                android:text="에스파 타이틀곡 클래스  "
+                android:drawableRight="@drawable/dday1"
                 android:textSize="18dp" />
 
             <LinearLayout

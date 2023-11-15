@@ -52,7 +52,7 @@ public class HomeClassInfo extends AppCompatActivity {
 
         backbtn = (ImageButton) findViewById(R.id.backbtn);
         genretext = (TextView) findViewById(R.id.genretext);
-        cname1 = (TextView) findViewById(R.id.cname1);
+//        cname1 = (TextView) findViewById(R.id.cname1);
         cname2 = (TextView) findViewById(R.id.cname2);
         gradetext = (TextView) findViewById(R.id.gradetext);
         daytext = (TextView) findViewById(R.id.daytext);
@@ -107,7 +107,7 @@ public class HomeClassInfo extends AppCompatActivity {
             public void onComplete(@NonNull Task<DocumentSnapshot> task) {
                 if (task.isSuccessful()) {
                     DocumentSnapshot document = task.getResult();
-                    cname1.setText(document.getString("name"));
+//                    cname1.setText(document.getString("name"));
                     cname2.setText(document.getString("name"));
                     gradetext.setText("난이도 " + document.getString("difficulty"));
                     if (document.getString("frequency") == "1") {
