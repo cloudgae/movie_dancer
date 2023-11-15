@@ -87,5 +87,10 @@
         <item name="android:textColor">@color/black</item>
 
     </style>
+    <style name="ApplyButton">
+        <item name="android:backgroundTint">#313131</item>
+        <item name="android:textColor">@color/white</item> <!-- 원하는 텍스트 색상을 설정합니다 -->
+        <!-- 다른 버튼 속성들을 필요에 따라 추가할 수 있습니다 -->
+    </style>
 
 </resources>

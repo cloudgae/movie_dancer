@@ -122,13 +122,16 @@ public class MainActivity extends AppCompatActivity {
                             noclassimg.setVisibility(View.INVISIBLE);
                         } else {
                             openlistlayout.setVisibility(View.INVISIBLE);
+                            noclassimg.setVisibility(View.VISIBLE);
                             // open 필드가 false인 경우에 대한 처리를 추가할 수도 있습니다
                         }
                     } else {
+                        noclassimg.setVisibility(View.VISIBLE);
                         openlistlayout.setVisibility(View.INVISIBLE);
                         // 문서가 존재하지 않는 경우에 대한 처리를 추가할 수도 있습니다
                     }
                 } else {
+                    noclassimg.setVisibility(View.VISIBLE);
                     // 작업이 실패한 경우에 대한 처리를 추가할 수도 있습니다
                 }
             }
@@ -137,7 +140,9 @@ public class MainActivity extends AppCompatActivity {
         classinfo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                Intent i = new Intent(MainActivity.this, HomeClassInfo.class);
+                startActivity(i);
+                finish();
             }
         });
 //        recyclerView = findViewById(R.id.recyclerView);
