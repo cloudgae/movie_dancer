@@ -15,6 +15,7 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.DataSource;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.load.engine.GlideException;
 import com.bumptech.glide.request.RequestListener;
 import com.bumptech.glide.request.target.Target;
@@ -79,8 +80,8 @@ public class HomeClassInfo_tab1 extends Fragment {
                     String dc3 = documentSnapshot.getString("career3");
                     String dc4 = documentSnapshot.getString("career4");
                     dancercareer.setText("- " +dc1 + "\n" +
-                            "- " +dc2 + "\n" +
-                            "- " +dc3 + "\n");
+                            "- " +dc2 + "\n" /*+
+                            "- " +dc3 + "\n"*/);
                     dancer_intro.setText(documentSnapshot.getString("introduce"));
 
 //                    String dancerNameValue = documentSnapshot.getString("dancername");
@@ -95,8 +96,11 @@ public class HomeClassInfo_tab1 extends Fragment {
 //        String videoName = "C7video";
 //        loadVideoThumbnailFromS3(videoName);
         // AWS S3에서 이미지를 로드하여 이미지뷰에 설정
-        String imageName = "C7image/C7image"; // S3 버킷 내 이미지 파일의 경로 및 파일명
-        loadImageFromS3(imageName);
+//        String imageName = "C7image/C7image"; // S3 버킷 내 이미지 파일의 경로 및 파일명
+//        loadImageFromS3(imageName);
+        String imageUrl = "https://moovitbucket2.s3.ap-northeast-2.amazonaws.com/C7image/C7image";
+        Glide.with(HomeClassInfo_tab1.this).load(imageUrl).diskCacheStrategy(DiskCacheStrategy.NONE)
+                .skipMemoryCache(true).into(thumb);
 
         return view;
     }

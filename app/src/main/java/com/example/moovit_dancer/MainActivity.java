@@ -20,6 +20,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -43,6 +44,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -51,7 +53,7 @@ public class MainActivity extends AppCompatActivity {
     ImageButton makeclass;
     /*Button mn1, mn2, mn3;*/
     ImageView noclassimg;
-
+    boolean isOpen = false;
     private RecyclerView recyclerView;
     private DanceClassAdapter adapter;
 
@@ -72,6 +74,8 @@ public class MainActivity extends AppCompatActivity {
         openlistlayout = (LinearLayout) findViewById(R.id.openlistlayout);
         classinfo = (Button) findViewById(R.id.classinfo);
 
+        // 초기에 숨겨놓기
+        openlistlayout.setVisibility(View.INVISIBLE);
 
         bottomNavigationView = findViewById(R.id.bottomNavigationView);
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -100,26 +104,28 @@ public class MainActivity extends AppCompatActivity {
             public void onComplete(@NonNull Task<DocumentSnapshot> task) {
                 if (task.isSuccessful()) {
                     DocumentSnapshot document = task.getResult();
-                    if (document.exists()) {
+                    if (document != null && document.exists()) {
                         // C7 문서의 open 필드의 값이 true인지 확인합니다
-                        boolean isOpen = document.getBoolean("open");
+                        Boolean openField = document.getBoolean("open");
 
                         // 만약 open 필드가 true이면 텍스트뷰를 수정합니다
-                        if (isOpen) {
+                        if (openField != null && openField) {
+                            openlistlayout.setVisibility(View.VISIBLE);
+                            noclassimg.setVisibility(View.INVISIBLE);
 
-                            String imageUrl = "https://moovitbucket2.s3.ap-northeast-2.amazonaws.com/C7image/C7image"; // AWS S3 버킷의 이미지 URL로 변경
-                            Glide.with(MainActivity.this).load(imageUrl).into(classimg);
+                            String imageUrl = "https://moovitbucket2.s3.ap-northeast-2.amazonaws.com/C7image/C7image";
+                            Glide.with(MainActivity.this).load(imageUrl).diskCacheStrategy(DiskCacheStrategy.NONE)
+                                    .skipMemoryCache(true).into(classimg);
 
                             String cname = document.getString("name");
                             String cmozip = document.getString("mozip");
                             String cdate = document.getString("date");
+
                             // 텍스트뷰를 수정하는 코드를 여기에 추가합니다
-                            classname.setText(cname);  // 예시로 텍스트를 수정하는 코드입니다
-                            mozip.setText(cmozip);
+                            classname.setText(cname);
+                            mozip.setText(Objects.requireNonNull(cmozip) + "명");
                             classdate.setText(cdate);
 
-
-                            noclassimg.setVisibility(View.INVISIBLE);
                         } else {
                             openlistlayout.setVisibility(View.INVISIBLE);
                             noclassimg.setVisibility(View.VISIBLE);
@@ -131,8 +137,10 @@ public class MainActivity extends AppCompatActivity {
                         // 문서가 존재하지 않는 경우에 대한 처리를 추가할 수도 있습니다
                     }
                 } else {
+                    openlistlayout.setVisibility(View.INVISIBLE);
                     noclassimg.setVisibility(View.VISIBLE);
                     // 작업이 실패한 경우에 대한 처리를 추가할 수도 있습니다
+                    Log.e(TAG, "Error getting documents: ", task.getException());
                 }
             }
         });

@@ -24,10 +24,10 @@ import java.util.Map;
 
 public class Open_2 extends AppCompatActivity {
 
-    EditText edtxt_hash;
+    EditText edtxt_hash, edtxt_location;
     Button addhash;
     ImageButton backkey, nextkey;
-    String hash;
+    String hash, location;
     LinearLayout ovalContainer;
 
     @Override
@@ -39,7 +39,7 @@ public class Open_2 extends AppCompatActivity {
         addhash = (Button) findViewById(R.id.addhash);
         backkey = (ImageButton) findViewById(R.id.backkey);
         nextkey = (ImageButton) findViewById(R.id.nextkey);
-
+        edtxt_location = (EditText) findViewById(R.id.edtxt_location);
         ovalContainer = findViewById(R.id.ovalContainer);
 
         FirebaseFirestore db = FirebaseFirestore.getInstance();
@@ -64,7 +64,7 @@ public class Open_2 extends AppCompatActivity {
 
                     TextView textView = new TextView(Open_2.this);
                     textView.setText("# " + text + "  x");
-                    textView.setTextColor(Color.parseColor("#E87FEA"));
+                    textView.setTextColor(Color.parseColor("#6FD5EB"));
                     textView.setTextSize(14);
 
                     GradientDrawable shape = new GradientDrawable();
@@ -128,7 +128,10 @@ public class Open_2 extends AppCompatActivity {
             public void onClick(View view) {
                 //edittext에 입력한 제목 정보 파이어스토어에 추가
                 hash = edtxt_hash.getText().toString();
-                data.put("hash", hash);
+                location = edtxt_location.getText().toString();
+
+//                data.put("hash", hash);
+                data.put("location", location);
                 docRef.update(data);
 
                 Intent i = new Intent(Open_2.this, Open_3.class);

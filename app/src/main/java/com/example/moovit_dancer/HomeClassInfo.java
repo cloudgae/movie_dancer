@@ -14,6 +14,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
@@ -22,19 +23,22 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.DataSource;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.load.engine.GlideException;
 import com.bumptech.glide.request.RequestListener;
 import com.bumptech.glide.request.target.Target;
 import com.example.moovit_dancer.MyPage.MyPage_0;
+import com.example.moovit_dancer.portfolio.Portfolio;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.tabs.TabLayout;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 public class HomeClassInfo extends AppCompatActivity {
-
+    private BottomNavigationView bottomNavigationView;
     TextView genretext, cname1, cname2, gradetext, daytext, locationtext, pricetext, cmozip;
     ImageButton backbtn, rewritebtn, viewstudentbtn;
     ImageView cimage;
@@ -65,6 +69,24 @@ public class HomeClassInfo extends AppCompatActivity {
         tabLayout.setupWithViewPager(pager);
         pager.setAdapter(new HomeClassInfo.PageAdapter(getSupportFragmentManager(), this));
 
+        bottomNavigationView = findViewById(R.id.bottomNavigationView);
+        bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                switch (item.getItemId()) {
+                    case R.id.home:
+                        openMainActivity();
+                        return true;
+                    case R.id.portfolio:
+                        openPortfolio();
+                        return true;
+                    case R.id.mypage:
+                        openMyPage();
+                        return true;
+                }
+                return false;
+            }
+        });
 
         Drawable drawable = getResources().getDrawable(R.drawable.genreicon);
         // dp 값을 px로 변환
@@ -87,7 +109,7 @@ public class HomeClassInfo extends AppCompatActivity {
                     DocumentSnapshot document = task.getResult();
                     cname1.setText(document.getString("name"));
                     cname2.setText(document.getString("name"));
-                    gradetext.setText(document.getString("difficulty") + "급 난이도");
+                    gradetext.setText("난이도 " + document.getString("difficulty"));
                     if (document.getString("frequency") == "1") {
                         daytext.setText("원데이 클래스");
                     } else if (document.getString("frequency") == "n") {
@@ -100,8 +122,11 @@ public class HomeClassInfo extends AppCompatActivity {
 //                            document.getString("max") + ")");
 
                     // AWS S3에서 이미지를 로드하여 이미지뷰에 설정
-                    String imageName = "C7image/C7image"; // S3 버킷 내 이미지 파일의 경로 및 파일명
-                    loadImageFromS3(imageName);
+//                    String imageName = "C7image/C7image"; // S3 버킷 내 이미지 파일의 경로 및 파일명
+//                    loadImageFromS3(imageName);
+                    String imageUrl = "https://moovitbucket2.s3.ap-northeast-2.amazonaws.com/C7image/C7image";
+                    Glide.with(HomeClassInfo.this).load(imageUrl).diskCacheStrategy(DiskCacheStrategy.NONE)
+                            .skipMemoryCache(true).into(cimage);
                 }
             }
         });
@@ -184,5 +209,18 @@ public class HomeClassInfo extends AppCompatActivity {
                 .override(widthInPixels, heightInPixels)  // 디바이스 독립적인 픽셀로 크기 지정
                 .into(cimage);
     }
+    private void openMainActivity() {
+        Intent intent = new Intent(this, MainActivity.class);
+        startActivity(intent);
+    }
 
+    private void openPortfolio() {
+        Intent intent = new Intent(this, Portfolio.class);
+        startActivity(intent);
+    }
+
+    private void openMyPage() {
+        Intent intent = new Intent(this, MyPage_0.class);
+        startActivity(intent);
+    }
 }

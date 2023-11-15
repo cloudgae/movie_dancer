@@ -11,6 +11,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 
+import com.example.moovit_dancer.MainActivity;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -76,6 +77,9 @@ public class Onboarding extends AppCompatActivity {
                 saveIntroduceToFirestore();
                 // 나머지 career 내용도 Firestore에 저장
                 saveAllCareersToFirestore();
+                Intent i = new Intent(Onboarding.this, MainActivity.class);
+                startActivity(i);
+                finish();
             }
         });
     }
