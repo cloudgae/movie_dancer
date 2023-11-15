@@ -25,7 +25,7 @@ import java.util.Map;
 public class Open_2 extends AppCompatActivity {
 
     EditText edtxt_hash, edtxt_location;
-    Button addhash;
+    ImageButton addhash;
     ImageButton backkey, nextkey;
     String hash, location;
     LinearLayout ovalContainer;
@@ -36,7 +36,7 @@ public class Open_2 extends AppCompatActivity {
         setContentView(R.layout.activity_open2);
 
         edtxt_hash = (EditText) findViewById(R.id.edtxt_hash);
-        addhash = (Button) findViewById(R.id.addhash);
+        addhash = (ImageButton) findViewById(R.id.addhash);
         backkey = (ImageButton) findViewById(R.id.backkey);
         nextkey = (ImageButton) findViewById(R.id.nextkey);
         edtxt_location = (EditText) findViewById(R.id.edtxt_location);

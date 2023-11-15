@@ -40,14 +40,16 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:layout_marginTop="10dp">
 
 
             <TextView
+
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_marginHorizontal="20dp"
-                android:fontFamily="@font/notosanskr_bold"
+                android:fontFamily="@font/notosanskr_medium"
                 android:text="댄서님을 소개해주세요"
                 android:includeFontPadding="false"
                 android:layout_marginVertical="10dp"
@@ -62,7 +64,7 @@
                 android:includeFontPadding="false"
                 android:layout_marginBottom="30dp"
                 android:textColor="#BBBBBB"
-                android:textSize="14dp" />
+                android:textSize="12dp" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -81,12 +83,15 @@
                         android:layout_weight="1">
 
                         <TextView
-                            android:layout_width="match_parent"
+                            android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="튜터 소개"
-                            android:fontFamily="@font/notosanskr_regular"/>
+                            android:text="튜터 소개 "
+                            android:drawableRight="@drawable/redstar"
+                            android:fontFamily="@font/notosanskr_regular"
+                            android:textSize="14dp"/>
 
                         <EditText
+                            android:layout_marginTop="10dp"
                             android:id="@+id/edtxt_intro"
                             android:layout_width="match_parent"
                             android:layout_height="120dp"
@@ -101,9 +106,10 @@
                             android:paddingHorizontal="10dp"/>
 
                         <TextView
-                            android:layout_width="match_parent"
+                            android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="이력 및 경력 소개"
+                            android:text="이력 및 경력 소개 "
+                            android:drawableRight="@drawable/redstar"
                             android:layout_marginTop="30dp"
                             android:fontFamily="@font/notosanskr_regular"/>
 
@@ -136,12 +142,13 @@
                             <Button
                                 android:id="@+id/add_career"
                                 android:layout_width="match_parent"
-                                android:layout_height="50dp"
+                                android:layout_height="wrap_content"
                                 android:backgroundTint="@color/black"
                                 android:text="+ 추가하기"
                                 android:includeFontPadding="false"
                                 android:fontFamily="@font/notosanskr_medium"
                                 android:textColor="#6B6B6B"
+                                android:padding="0dp"
                                 />
 
                         </LinearLayout>

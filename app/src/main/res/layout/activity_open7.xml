@@ -111,31 +111,28 @@
                 </TableRow>
             </TableLayout>
 
+
             <TextView
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginHorizontal="20dp"
-                android:fontFamily="@font/notosanskr_bold"
-                android:text="클래스 일정을 입력해주세요"
-                android:textSize="18dp" />
-            <TextView
-                android:layout_width="match_parent"
+                android:layout_marginTop="10dp"
+                android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_marginHorizontal="20dp"
                 android:fontFamily="@font/notosanskr_regular"
-                android:text="수강생 모집 기간"
+                android:text="수강생 모집 기간 "
+                android:drawableRight="@drawable/redstar"
                 android:textSize="14dp" />
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_marginHorizontal="20dp"
-                android:fontFamily="@font/notosanskr_bold"
+                android:fontFamily="@font/notosanskr_regular"
                 android:text="클래스 전체 스케줄에 대한 모집 기간을 설정해주세요.\n
 모집 종료일을 클래스 마지막 일정과 맞춰주세요"
                 android:textSize="12dp"
                 android:textColor="#BBBBBB"/>
 
             <LinearLayout
+                android:layout_marginTop="10dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
@@ -171,22 +168,25 @@
             </LinearLayout>
 
             <TextView
-                android:layout_width="match_parent"
+                android:layout_marginTop="40dp"
+                android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_marginHorizontal="20dp"
                 android:fontFamily="@font/notosanskr_regular"
-                android:text="클래스 모집 인원"
+                android:text="클래스 모집 인원 "
+                android:drawableRight="@drawable/redstar"
                 android:textSize="14dp" />
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_marginHorizontal="20dp"
-                android:fontFamily="@font/notosanskr_bold"
+                android:fontFamily="@font/notosanskr_regular"
                 android:text="클래스 설강 최소 인원과 최대 인원을 작성해주세요"
                 android:textSize="12dp"
                 android:textColor="#BBBBBB"/>
 
             <LinearLayout
+                android:layout_marginTop="10dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"

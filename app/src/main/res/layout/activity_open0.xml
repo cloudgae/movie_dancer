@@ -121,27 +121,28 @@
                 </TableRow>
             </TableLayout>
 
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginHorizontal="20dp"
-                android:fontFamily="@font/notosanskr_bold"
-                android:text="클래스 유형 정보를 입력해주세요."
-                android:textSize="18dp" />
+<!--            <TextView-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="match_parent"-->
+<!--                android:layout_marginHorizontal="20dp"-->
+<!--                android:fontFamily="@font/notosanskr_bold"-->
+<!--                android:text="클래스 유형 정보를 입력해주세요."-->
+<!--                android:textSize="18dp" />-->
 
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginHorizontal="20dp"
-                android:fontFamily="@font/notosanskr_regular"
-                android:text="댄서님의 재능을 나눠보세요!"
-                android:textColor="#BBBBBB"
-                android:textSize="14dp" />
+<!--            <TextView-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="match_parent"-->
+<!--                android:layout_marginHorizontal="20dp"-->
+<!--                android:fontFamily="@font/notosanskr_regular"-->
+<!--                android:text="댄서님의 재능을 나눠보세요!"-->
+<!--                android:textColor="#BBBBBB"-->
+<!--                android:textSize="14dp" />-->
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:orientation="vertical">
+                android:orientation="vertical"
+                android:layout_marginTop="20dp">
 
                 <LinearLayout
                     android:layout_width="wrap_content"
@@ -158,9 +159,11 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="춤 장르" />
+                            android:text="춤 장르 "
+                            android:drawableRight="@drawable/redstar"/>
 
                         <Spinner
+                            android:layout_marginTop="10dp"
                             android:id="@+id/spinner"
                             android:layout_width="150dp"
                             android:layout_height="40dp"
@@ -176,9 +179,11 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="난이도" />
+                            android:text="난이도 "
+                            android:drawableRight="@drawable/redstar"/>
 
                         <Spinner
+                            android:layout_marginTop="10dp"
                             android:id="@+id/spinner2"
                             android:layout_width="150dp"
                             android:layout_height="40dp"
@@ -190,7 +195,9 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginHorizontal="20dp"
-                    android:text="참여 인원" />
+                    android:text="참여 인원 "
+                    android:drawableRight="@drawable/redstar"
+                    android:layout_marginTop="40dp"/>
 
 
                 <RadioGroup
@@ -222,7 +229,9 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginHorizontal="20dp"
-                    android:text="클래스 횟수" />
+                    android:text="클래스 횟수 "
+                    android:drawableRight="@drawable/redstar"
+                    android:layout_marginTop="40dp"/>
 
                 <RadioGroup
                     android:id="@+id/Rg_t"

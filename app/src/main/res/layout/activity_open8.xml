@@ -112,20 +112,16 @@
             </TableLayout>
 
             <TextView
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginHorizontal="20dp"
-                android:fontFamily="@font/notosanskr_bold"
-                android:text="수강료를 입력해주세요"
-                android:textSize="18dp" />
-            <TextView
-                android:layout_width="match_parent"
+                android:layout_marginTop="10dp"
+                android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_marginHorizontal="20dp"
                 android:fontFamily="@font/notosanskr_regular"
-                android:text="한 회차 당 수강료 입력"
+                android:text="한 회차 당 수강료 입력 "
+                android:drawableRight="@drawable/redstar"
                 android:textSize="14dp" />
             <EditText
+                android:layout_marginTop="10dp"
                 android:id="@+id/edtxt_fee"
                 android:layout_width="match_parent"
                 android:layout_height="42dp"

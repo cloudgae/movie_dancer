@@ -81,9 +81,10 @@
                         android:layout_weight="1">
 
                         <TextView
-                            android:layout_width="match_parent"
+                            android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="튜터 소개"
+                            android:text="튜터 소개 "
+                            android:drawableRight="@drawable/redstar"
                             android:fontFamily="@font/notosanskr_regular"/>
 
                         <EditText
@@ -101,10 +102,11 @@
                             android:paddingHorizontal="10dp"/>
 
                         <TextView
-                            android:layout_width="match_parent"
+                            android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="이력 및 경력 소개"
-                            android:layout_marginTop="30dp"
+                            android:text="이력 및 경력 소개 "
+                            android:drawableRight="@drawable/redstar"
+                            android:layout_marginTop="40dp"
                             android:fontFamily="@font/notosanskr_regular"/>
 
                         <LinearLayout
@@ -168,7 +170,7 @@
                             <Button
                                 android:id="@+id/add_career"
                                 android:layout_width="match_parent"
-                                android:layout_height="50dp"
+                                android:layout_height="wrap_content"
                                 android:backgroundTint="@color/black"
                                 android:text="+ 추가하기"
                                 android:includeFontPadding="false"
@@ -197,17 +199,14 @@
                     android:gravity="center"
                     android:layout_marginBottom="20dp">
 
-                    <Button
+                    <ImageButton
                         android:id="@+id/finish_btn"
-                        android:layout_width="320dp"
-                        android:layout_height="50dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
                         android:layout_gravity="center"
                         android:gravity="center"
-                        android:text="작성 완료"
-                        android:textSize="16dp"
-                        android:textColor="@color/black"
-                        android:fontFamily="@font/notosanskr_medium"
-                        android:includeFontPadding="false"
+                        app:srcCompat="@drawable/onboardingwrite"
+                        android:background="@android:color/transparent"
                         />
 
 

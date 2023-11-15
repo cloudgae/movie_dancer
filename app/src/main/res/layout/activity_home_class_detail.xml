@@ -13,15 +13,29 @@
         android:layout_weight="1"
         android:orientation="vertical">
 
-        <android.widget.Button
-            android:id="@+id/goback"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:layout_marginVertical="15dp"
-            android:background="@drawable/white_arrow"
-            android:gravity="left"
-            android:layout_marginLeft="10dp"
-            />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <android.widget.Button
+                android:id="@+id/goback"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_marginVertical="15dp"
+                android:layout_marginLeft="10dp"
+                android:background="@drawable/white_arrow"
+                android:gravity="left" />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="수강생 보기"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:fontFamily="@font/notosanskr_regular"
+                android:textSize="16dp"
+                android:layout_marginRight="40dp"/>
+        </LinearLayout>
 
         <FrameLayout
             android:layout_width="match_parent"
@@ -31,7 +45,7 @@
                 android:id="@+id/seedetail"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:background="@android:color/transparent"/>
+                android:background="@android:color/transparent" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -49,8 +63,7 @@
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
-                    android:orientation="horizontal"
-                    >
+                    android:orientation="horizontal">
 
                     <LinearLayout
                         android:layout_width="250dp"
@@ -61,35 +74,34 @@
                             android:id="@+id/cname"
                             android:layout_width="match_parent"
                             android:layout_height="30dp"
+                            android:layout_marginLeft="10dp"
+                            android:fontFamily="@font/notosanskr_bold"
                             android:text="케이팝 걸그룹 타이틀곡 메들리 클래스"
                             android:textColor="#FFFFFF"
-                            android:textSize="13dp"
-                            android:fontFamily="@font/notosanskr_bold"
-                            android:layout_marginLeft="10dp" />
+                            android:textSize="13dp" />
 
                         <TextView
                             android:id="@+id/cdate"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="05.12 (금) 16:00 - 18:00"
-                            android:textSize="12dp"
-                            android:textColor="#8D8D8D"
                             android:layout_marginLeft="10dp"
-                            android:layout_marginTop="0dp"/>
+                            android:layout_marginTop="0dp"
+                            android:text="05.12 (금) 16:00 - 18:00"
+                            android:textColor="#8D8D8D"
+                            android:textSize="12dp" />
 
                         <TextView
                             android:id="@+id/dday"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="D-1"
-                            android:padding="5dp"
                             android:layout_marginLeft="10dp"
                             android:layout_marginTop="10dp"
-                            android:textSize="9dp"
-                            android:gravity="center"
                             android:background="@drawable/recruiting_button"
-                            android:textColor="#6FD5EB"/>
-
+                            android:gravity="center"
+                            android:padding="5dp"
+                            android:text="D-1"
+                            android:textColor="#6FD5EB"
+                            android:textSize="9dp" />
 
 
                     </LinearLayout>
@@ -113,9 +125,9 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="수강생"
-                android:textSize="15dp"
-                android:fontFamily="@font/notosanskr_bold"/>
+                android:fontFamily="@font/notosanskr_medium"
+                android:text="수강생 목록"
+                android:textSize="16dp" />
 
             <LinearLayout
                 android:id="@+id/linear1"
@@ -124,12 +136,13 @@
 
                 <ImageView
                     android:id="@+id/studentimg"
-                    android:layout_marginVertical="10dp"
                     android:layout_width="40dp"
                     android:layout_height="40dp"
-                    android:background="@drawable/studentprofile"/>
+                    android:layout_marginVertical="10dp"
+                    android:background="@drawable/studentprofile" />
 
                 <LinearLayout
+                    android:layout_marginLeft="5dp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical">
@@ -138,26 +151,25 @@
                         android:id="@+id/studentname"
                         android:layout_width="match_parent"
                         android:layout_height="33dp"
-                        android:text="김무빗"
-                        android:textSize="13dp"
+                        android:layout_marginLeft="10dp"
                         android:fontFamily="@font/notosanskr_medium"
-                        android:layout_marginLeft="10dp"/>
+                        android:text="김무빗"
+                        android:textSize="13dp" />
 
                     <TextView
                         android:id="@+id/studentgrade"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="스타터"
-                        android:textSize="11dp"
                         android:layout_marginLeft="10dp"
-                        android:textColor="#6FD5EB"/>
+                        android:text="스타터"
+                        android:textColor="#6FD5EB"
+                        android:textSize="11dp" />
 
                 </LinearLayout>
 
             </LinearLayout>
 
-<!--            -->
-
+            <!--            -->
 
 
         </LinearLayout>

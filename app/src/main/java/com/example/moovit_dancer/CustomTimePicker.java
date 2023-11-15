@@ -1,10 +1,16 @@
 package com.example.moovit_dancer;
 
 import android.content.Context;
+import android.graphics.Color;
+import android.graphics.Paint;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
+import android.view.View;
+import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.NumberPicker;
+
+import java.lang.reflect.Field;
 
 public class CustomTimePicker extends LinearLayout {
     private NumberPicker amPmPicker;
@@ -42,10 +48,22 @@ public class CustomTimePicker extends LinearLayout {
         minutePicker.setMinValue(0);
         minutePicker.setMaxValue(59);
 
+//        // 텍스트 색상 설정
+        setNumberPickerTextColor(amPmPicker, Color.WHITE);
+        setNumberPickerTextColor(hourPicker, Color.WHITE);
+        setNumberPickerTextColor(minutePicker, Color.WHITE);
+
+
         setPadding(50, 0, 50, 0);
     }
-
-
+    private void setNumberPickerTextColor(NumberPicker numberPicker, int color) {
+        for (int i = 0; i < numberPicker.getChildCount(); i++) {
+            View child = numberPicker.getChildAt(i);
+            if (child instanceof EditText) {
+                ((EditText) child).setTextColor(color);
+            }
+        }
+    }
     public int getAmPm() {
         return amPmPicker.getValue();
     }
@@ -69,4 +87,5 @@ public class CustomTimePicker extends LinearLayout {
     public void setMinute(int value) {
         minutePicker.setValue(value);
     }
+
 }

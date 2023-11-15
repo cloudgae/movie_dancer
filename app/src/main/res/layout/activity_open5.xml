@@ -112,12 +112,15 @@
             </TableLayout>
 
             <TextView
-                android:layout_width="match_parent"
+                android:layout_marginTop="10dp"
+                android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_marginHorizontal="20dp"
-                android:fontFamily="@font/notosanskr_bold"
-                android:text="클래스 일정을 입력해주세요"
-                android:textSize="18dp" />
+                android:fontFamily="@font/notosanskr_regular"
+                android:text="클래스 일정을 입력해주세요 "
+                android:drawableRight="@drawable/redstar"
+                android:textSize="14dp"
+                android:layout_marginBottom="20dp"/>
 
             <!--            <DatePicker-->
             <!--                android:id="@+id/datePicker"-->
@@ -128,6 +131,7 @@
             <!--                android:theme="@style/DialogDatePicker.Theme" />-->
 
             <CalendarView
+                android:layout_gravity="center"
                 android:id="@+id/calendarView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"

@@ -9,6 +9,7 @@ import android.view.Gravity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.LinearLayout;
 
 import com.example.moovit_dancer.MainActivity;
@@ -26,7 +27,7 @@ public class Onboarding extends AppCompatActivity {
     Button arw;
     LinearLayout careerContainer;
     Button addCareerButton;
-    Button finishBtn;
+    ImageButton finishBtn;
     int careerCount = 1; // 초기 career 상자 개수
 
     FirebaseFirestore firestore;

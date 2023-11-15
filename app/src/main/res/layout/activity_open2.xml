@@ -121,22 +121,6 @@
                 </TableRow>
             </TableLayout>
 
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginHorizontal="20dp"
-                android:fontFamily="@font/notosanskr_bold"
-                android:text="클래스를 간단히 소개해주세요."
-                android:textSize="18dp" />
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginHorizontal="20dp"
-                android:fontFamily="@font/notosanskr_regular"
-                android:text="클래스 기본 정보 입력"
-                android:textColor="#BBBBBB"
-                android:textSize="14dp" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -144,11 +128,14 @@
                 android:orientation="vertical"
                 >
                 <TextView
-                    android:layout_width="match_parent"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/notosanskr_regular"
-                    android:text="클래스 소개 해시태그(최대 10개)"
-                    android:layout_marginHorizontal="20dp"/>
+                    android:text="클래스 소개 해시태그(최대 10개) "
+                    android:drawableRight="@drawable/redstar"
+                    android:layout_marginHorizontal="20dp"
+                    android:layout_marginTop="10dp"
+                    />
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -173,13 +160,13 @@
                             android:textColorHint="#BBBBBB"
                             android:textSize="14dp" />
 
-                        <Button
+                        <ImageButton
                             android:id="@+id/addhash"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginStart="20dp"
-                            android:fontFamily="@font/notosanskr_regular"
-                            android:text="추가" />
+                            app:srcCompat="@drawable/hashlocadd"
+                            android:background="@android:color/transparent"/>
                     </LinearLayout>
 
                 </LinearLayout>
@@ -197,7 +184,8 @@
                     android:layout_height="wrap_content"
                     android:layout_marginHorizontal="20dp"
                     android:fontFamily="@font/notosanskr_regular"
-                    android:text="클래스 위치 정보"
+                    android:text="클래스 위치 정보 "
+                    android:drawableRight="@drawable/redstar"
                     android:layout_marginTop="40dp"/>
 
                 <LinearLayout
@@ -219,14 +207,15 @@
                         android:textColorHint="#BBBBBB"
                         android:textSize="14dp" />
 
-                    <Button
+                    <ImageButton
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:fontFamily="@font/notosanskr_regular"
-                        android:text="검색" />
+                        app:srcCompat="@drawable/hashlocadd"
+                        android:background="@android:color/transparent"/>
                 </LinearLayout>
 
                 <EditText
+                    android:layout_marginTop="10dp"
                     android:layout_width="match_parent"
                     android:layout_height="50dp"
                     android:layout_marginHorizontal="20dp"

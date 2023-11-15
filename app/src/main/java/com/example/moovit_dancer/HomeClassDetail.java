@@ -60,7 +60,8 @@ public class HomeClassDetail extends AppCompatActivity {
                 if (task.isSuccessful()) {
                     DocumentSnapshot document = task.getResult();
                     cname.setText(document.getString("name"));
-                    cdate.setText(document.getString("date"));
+                    cdate.setText(document.getString("date") + " " + document.getString("starttime")
+                    + " ~ " + document.getString("endtime"));
 
                     String ismozip = document.getString("mozip");
 
