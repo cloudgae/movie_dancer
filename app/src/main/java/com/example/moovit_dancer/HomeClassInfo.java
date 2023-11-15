@@ -36,7 +36,7 @@ import com.google.firebase.firestore.FirebaseFirestore;
 public class HomeClassInfo extends AppCompatActivity {
 
     TextView genretext, cname1, cname2, gradetext, daytext, locationtext, pricetext, cmozip;
-    ImageButton backbtn, rewritebtn;
+    ImageButton backbtn, rewritebtn, viewstudentbtn;
     ImageView cimage;
 
     ViewPager pager;
@@ -59,6 +59,7 @@ public class HomeClassInfo extends AppCompatActivity {
         pager = (ViewPager) findViewById(R.id.pager);
         TabLayout tabLayout = findViewById(R.id.tab_layout);
         rewritebtn = (ImageButton) findViewById(R.id.rewritebtn);
+        viewstudentbtn = (ImageButton) findViewById(R.id.viewstudentbtn);
 
         pager.setOffscreenPageLimit(3);
         tabLayout.setupWithViewPager(pager);
@@ -115,7 +116,7 @@ public class HomeClassInfo extends AppCompatActivity {
             }
         });
 
-        rewritebtn.setOnClickListener(new View.OnClickListener() {
+        viewstudentbtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent i = new Intent(HomeClassInfo.this, HomeClassDetail.class);

@@ -188,6 +188,8 @@ public class Open_0 extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 data.put("open", true);
+                //모집인원필드
+                data.put("mozip", "0");
                 newClassRef.set(data);
                 //new Intent(현재 context, 이동할 activity)
                 Intent i = new Intent(Open_0.this, Open_1.class);

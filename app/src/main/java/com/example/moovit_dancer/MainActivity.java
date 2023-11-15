@@ -200,8 +200,8 @@ public class MainActivity extends AppCompatActivity {
 ////                classRef.set(data);
 //
 //                Intent i = new Intent(MainActivity.this, Open_0.class);
-//                startActivity(i);	//intent 에 명시된 액티비티로 이동
-//                finish();	//현재 액티비티 종료
+//                startActivity(i);    //intent 에 명시된 액티비티로 이동
+//                finish();    //현재 액티비티 종료
 //
 //
 //            }

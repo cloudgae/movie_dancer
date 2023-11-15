@@ -38,10 +38,12 @@
                 android:layout_height="100dp"
                 android:layout_marginBottom="10dp">
 
-                <ImageButton
+                <ImageView
+                    android:id="@+id/cimage"
                     android:layout_width="85dp"
                     android:layout_height="85dp"
                     android:layout_marginLeft="15dp"
+                    android:scaleType="centerCrop"
                     tools:ignore="SpeakableTextPresentCheck" />
 
                 <LinearLayout
@@ -79,7 +81,7 @@
                             android:id="@+id/dday"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="D-0"
+                            android:text="D-1"
                             android:padding="5dp"
                             android:layout_marginLeft="10dp"
                             android:layout_marginTop="10dp"
@@ -116,14 +118,16 @@
                 android:fontFamily="@font/notosanskr_bold"/>
 
             <LinearLayout
+                android:id="@+id/linear1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
-                <ImageButton
+                <ImageView
+                    android:id="@+id/studentimg"
                     android:layout_marginVertical="10dp"
                     android:layout_width="40dp"
                     android:layout_height="40dp"
-                    android:background="@drawable/ellipse"/>
+                    android:background="@drawable/studentprofile"/>
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -131,57 +135,28 @@
                     android:orientation="vertical">
 
                     <TextView
+                        android:id="@+id/studentname"
                         android:layout_width="match_parent"
                         android:layout_height="33dp"
-                        android:text="김뚝딱"
+                        android:text="김무빗"
                         android:textSize="13dp"
                         android:fontFamily="@font/notosanskr_medium"
                         android:layout_marginLeft="10dp"/>
 
                     <TextView
+                        android:id="@+id/studentgrade"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="스타터 · 수강 0회"
+                        android:text="스타터"
                         android:textSize="11dp"
-                        android:layout_marginLeft="10dp"/>
+                        android:layout_marginLeft="10dp"
+                        android:textColor="#6FD5EB"/>
 
                 </LinearLayout>
 
             </LinearLayout>
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-
-                <ImageButton
-                    android:layout_marginVertical="10dp"
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
-                    android:background="@drawable/ellipse"/>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical">
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="33dp"
-                        android:text="양뚝딱"
-                        android:textSize="13dp"
-                        android:fontFamily="@font/notosanskr_medium"
-                        android:layout_marginLeft="10dp"/>
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="무버 · 수강 1회"
-                        android:textSize="11dp"
-                        android:layout_marginLeft="10dp"/>
-
-                </LinearLayout>
-
-            </LinearLayout>
+<!--            -->
 
 
 

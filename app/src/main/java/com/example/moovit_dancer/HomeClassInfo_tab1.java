@@ -26,7 +26,7 @@ import com.google.firebase.firestore.FirebaseFirestore;
 public class HomeClassInfo_tab1 extends Fragment {
 
 
-    TextView content, content2, dancername, dancercareer;
+    TextView content, content2, dancername, dancercareer, dancer_intro;
     ImageView thumb, dancerprofile;
 
     private FirebaseFirestore db;
@@ -44,6 +44,8 @@ public class HomeClassInfo_tab1 extends Fragment {
         dancercareer = (TextView) view.findViewById(R.id.dancer_career);
         thumb = (ImageView) view.findViewById(R.id.thumb);
         dancerprofile = (ImageView) view.findViewById(R.id.dancer_profile);
+        dancer_intro = (TextView) view.findViewById(R.id.dancer_intro);
+
 
         // Firestore에서 "C7" 문서 데이터 가져오기
         DocumentReference docRef = db.collection("Class").document("C7");
@@ -54,14 +56,39 @@ public class HomeClassInfo_tab1 extends Fragment {
                     // Firestore 문서에서 데이터 가져오기
                     String contentValue = documentSnapshot.getString("intro");
                     String contentValue2 = documentSnapshot.getString("intro2");
-                    String dancerNameValue = documentSnapshot.getString("dancername");
-                    String dancerCareerValue = documentSnapshot.getString("dancercareer");
+//                    String dancerNameValue = documentSnapshot.getString("dancername");
+//                    String dancerCareerValue = documentSnapshot.getString("dancercareer");
 
                     // TextView 업데이트
                     content.setText(contentValue);
                     content2.setText(contentValue2);
-                    dancername.setText(dancerNameValue);
-                    dancercareer.setText(dancerCareerValue);
+//                    dancername.setText(dancerNameValue);
+//                    dancercareer.setText(dancerCareerValue);
+                }
+            }
+        });
+
+        DocumentReference docRef2 = db.collection("Dancer").document("profile1");
+        docRef2.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+            @Override
+            public void onSuccess(DocumentSnapshot documentSnapshot) {
+                if (documentSnapshot.exists()) {
+                    // Firestore 문서에서 데이터 가져오기
+                    String dc1 = documentSnapshot.getString("career1");
+                    String dc2 = documentSnapshot.getString("career2");
+                    String dc3 = documentSnapshot.getString("career3");
+                    String dc4 = documentSnapshot.getString("career4");
+                    dancercareer.setText("- " +dc1 + "\n" +
+                            "- " +dc2 + "\n" +
+                            "- " +dc3 + "\n");
+                    dancer_intro.setText(documentSnapshot.getString("introduce"));
+
+//                    String dancerNameValue = documentSnapshot.getString("dancername");
+//                    String dancerCareerValue = documentSnapshot.getString("dancercareer");
+
+
+//                    dancername.setText(dancerNameValue);
+//                    dancercareer.setText(dancerCareerValue);
                 }
             }
         });
