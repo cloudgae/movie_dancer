@@ -4,6 +4,7 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.DatePickerDialog;
+import android.content.ContextWrapper;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
@@ -167,11 +168,19 @@ public class Open_7 extends AppCompatActivity {
     }
 
     private void showNumberPickerDialog(final boolean isMinStudent) {
-        AlertDialog.Builder builder = new AlertDialog.Builder(new ContextThemeWrapper(this, R.style.CustomSpinnerStyle));
-        builder.setTitle("학생 수 선택");
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+//        AlertDialog.Builder builder = new AlertDialog.Builder(new ContextThemeWrapper(this, R.style.YourNumberPickerTheme));
+//        builder.setTitle("학생 수 선택");
+
+//        // NumberPicker 설정
+//        final NumberPicker numberPicker = new NumberPicker(new ContextThemeWrapper(this, R.style.YourAlertDialogTheme));
+//        numberPicker.setMinValue(1);
+//        numberPicker.setMaxValue(50);
+        // NumberPicker를 감싸는 커스텀 레이아웃 설정
+        View customLayout = getLayoutInflater().inflate(R.layout.custom_number_picker, null);
+        NumberPicker numberPicker = customLayout.findViewById(R.id.numberpicker);
 
         // NumberPicker 설정
-        final NumberPicker numberPicker = new NumberPicker(this);
         numberPicker.setMinValue(1);
         numberPicker.setMaxValue(50);
 
@@ -189,7 +198,8 @@ public class Open_7 extends AppCompatActivity {
             numberPicker.setValue(1); // 기본값 설정 (이 경우 1)
         }
 
-        builder.setView(numberPicker);
+//        builder.setView(numberPicker);
+        builder.setView(customLayout);
 
         // 확인 버튼 클릭 시 이벤트 처리
         builder.setPositiveButton("확인", new DialogInterface.OnClickListener() {
@@ -218,6 +228,7 @@ public class Open_7 extends AppCompatActivity {
 
         builder.show();
     }
+
 
 
     private void saveDateToFirestore(String field, Date selectedDate) {

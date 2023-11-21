@@ -5,8 +5,10 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.text.Editable;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -55,39 +57,55 @@ public class Open_8 extends AppCompatActivity {
         nextkey.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                fee = Integer.parseInt(edtxt_fee.getText().toString());
-                data.put("fee", fee);
-                docRef.update(data);
+                // 다이얼로그 변수 선언
+                final AlertDialog[] alertDialog = {null};
 
-                AlertDialog.Builder dlg = new AlertDialog.Builder(Open_8.this, R.style.MyAlertDialogStyle);
-                dlg.setTitle("클래스 개설 완료!");
-                dlg.setMessage("클래스가 개설되었어요. 홈 화면 내 개설 클래스 목록에서 확인 가능해요.");
-//        dlg.setIcon(R.mipmap.ic_launcher);
-                dlg.setPositiveButton("바로가기", new DialogInterface.OnClickListener() {
+                AlertDialog.Builder dlgBuilder = new AlertDialog.Builder(Open_8.this);
+                LayoutInflater inflater = getLayoutInflater();
+                View customLayout = inflater.inflate(R.layout.custom_dialog_layout, null);
+                dlgBuilder.setView(customLayout);
+
+                // 버튼 찾기
+                Button positiveButton = customLayout.findViewById(R.id.positivebtn);
+                Button negativeButton = customLayout.findViewById(R.id.negativebtn);
+
+                // 긍정 버튼 클릭 이벤트 설정
+                positiveButton.setOnClickListener(new View.OnClickListener() {
                     @Override
-                    public void onClick(DialogInterface dialogInterface, int i) {
+                    public void onClick(View view) {
+                        // 여기에 긍정 버튼을 클릭했을 때 수행할 동작을 추가하세요.
                         Intent i2 = new Intent(Open_8.this, MainActivity.class);
                         startActivity(i2);
                         finish();
+
+                        // 다이얼로그를 닫는 코드
+                        if (alertDialog[0] != null) {
+                            alertDialog[0].dismiss();
+                        }
                     }
                 });
-                dlg.setNegativeButton("취소", null);
 
-                // 긍정 버튼과 부정 버튼의 텍스트 색상 설정
-                AlertDialog alertDialog = dlg.create();
-                alertDialog.setOnShowListener(new DialogInterface.OnShowListener() {
+                // 부정 버튼 클릭 이벤트 설정
+                negativeButton.setOnClickListener(new View.OnClickListener() {
                     @Override
-                    public void onShow(DialogInterface dialogInterface) {
-                        Button positiveButton = alertDialog.getButton(DialogInterface.BUTTON_POSITIVE);
-                        Button negativeButton = alertDialog.getButton(DialogInterface.BUTTON_NEGATIVE);
-                        positiveButton.setTextColor(getResources().getColor(R.color.positivebtn));
-                        negativeButton.setTextColor(getResources().getColor(R.color.negativebtn));
+                    public void onClick(View view) {
+                        // 여기에 부정 버튼을 클릭했을 때 수행할 동작을 추가하세요.
+                        // 예: 다이얼로그를 닫거나 다른 동작 수행
+
+                        // 다이얼로그를 닫는 코드
+                        if (alertDialog[0] != null) {
+                            alertDialog[0].dismiss();
+                        }
                     }
                 });
 
-                alertDialog.show();
+                alertDialog[0] = dlgBuilder.create();
+                alertDialog[0].show();
+                alertDialog[0].getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
             }
         });
+
+
 
     }
 }

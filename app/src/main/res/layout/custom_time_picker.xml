@@ -8,19 +8,22 @@
         android:id="@+id/amPmPicker"
         android:layout_width="match_parent"
         android:layout_weight="1"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        />
 
     <!-- 시 선택 NumberPicker -->
     <NumberPicker
         android:id="@+id/hourPicker"
         android:layout_width="match_parent"
         android:layout_weight="1"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        />
 
     <!-- 분 선택 NumberPicker -->
     <NumberPicker
         android:id="@+id/minutePicker"
         android:layout_width="match_parent"
         android:layout_weight="1"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        />
 </LinearLayout>

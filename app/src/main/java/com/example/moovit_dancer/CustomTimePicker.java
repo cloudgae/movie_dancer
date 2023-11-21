@@ -1,8 +1,10 @@
 package com.example.moovit_dancer;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.graphics.Color;
 import android.graphics.Paint;
+import android.os.Build;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -49,21 +51,48 @@ public class CustomTimePicker extends LinearLayout {
         minutePicker.setMaxValue(59);
 
 //        // 텍스트 색상 설정
-        setNumberPickerTextColor(amPmPicker, Color.WHITE);
-        setNumberPickerTextColor(hourPicker, Color.WHITE);
-        setNumberPickerTextColor(minutePicker, Color.WHITE);
+        // 텍스트 색상 설정
+//        setNumberPickerTextColor(amPmPicker, Color.WHITE, Color.WHITE);
+//        setNumberPickerTextColor(hourPicker, Color.WHITE, Color.WHITE);
+//        setNumberPickerTextColor(minutePicker, Color.WHITE, Color.WHITE);
+
+
 
 
         setPadding(50, 0, 50, 0);
     }
-    private void setNumberPickerTextColor(NumberPicker numberPicker, int color) {
-        for (int i = 0; i < numberPicker.getChildCount(); i++) {
-            View child = numberPicker.getChildAt(i);
-            if (child instanceof EditText) {
-                ((EditText) child).setTextColor(color);
-            }
-        }
-    }
+//    private void setNumberPickerTextColor(NumberPicker numberPicker, int selectedColor, int normalColor) {
+//        try {
+//            Field selectorWheelPaintField = NumberPicker.class.getDeclaredField("mSelectorWheelPaint");
+//            selectorWheelPaintField.setAccessible(true);
+//            Paint paint = ((Paint) selectorWheelPaintField.get(numberPicker));
+//
+//            for (int i = 0; i < numberPicker.getChildCount(); i++) {
+//                View child = numberPicker.getChildAt(i);
+//                if (child instanceof EditText) {
+//                    boolean isValue = i == numberPicker.getValue();
+//                    ((EditText) child).setTextColor(isValue ? selectedColor : normalColor);
+//
+//                    // You can customize the paint for the selected and normal states here if needed
+//                    paint.setColor(isValue ? selectedColor : normalColor);
+//                    numberPicker.invalidate();
+//                }
+//            }
+//        } catch (NoSuchFieldException | IllegalAccessException | IllegalArgumentException e) {
+//            e.printStackTrace();
+//        }
+//    }
+
+
+
+    //    private void setNumberPickerTextColor(NumberPicker numberPicker, int color) {
+//        for (int i = 0; i < numberPicker.getChildCount(); i++) {
+//            View child = numberPicker.getChildAt(i);
+//            if (child instanceof EditText) {
+//                ((EditText) child).setTextColor(color);
+//            }
+//        }
+//    }
     public int getAmPm() {
         return amPmPicker.getValue();
     }
@@ -89,3 +118,4 @@ public class CustomTimePicker extends LinearLayout {
     }
 
 }
+

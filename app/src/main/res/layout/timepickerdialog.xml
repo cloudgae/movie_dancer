@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="360dp"
     android:layout_height="wrap_content"
-    android:background="#3D3D3D">
+    android:background="@drawable/custom_dialog_background">
 
     <TextView
         android:id="@+id/text_timepicker"
@@ -15,13 +15,15 @@
         android:textSize="15dp"
         android:layout_marginHorizontal="20dp"
         app:layout_constraintBottom_toTopOf="@+id/timepicker_alert_two"
-        app:layout_constraintStart_toStartOf="@+id/timepicker_alert_two" />
+        app:layout_constraintStart_toStartOf="@+id/timepicker_alert_two"
+        android:textColor="#3d3d3d"/>
 
     <com.example.moovit_dancer.CustomTimePicker
         android:id="@+id/timepicker_alert_two"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layout_constraintBottom_toTopOf="@+id/timepicker_btn"
+        android:theme="@style/YourNumberPickerTheme"
         />
 
     <ImageButton
@@ -34,6 +36,7 @@
         app:layout_constraintBottom_toBottomOf="@+id/timepicker_alert_two"
         app:srcCompat="@drawable/timeselect"
         tools:layout_editor_absoluteX="20dp"
-        android:background="@android:color/transparent"/>
+        android:background="@android:color/transparent"
+        android:layout_marginBottom="20dp"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

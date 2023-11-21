@@ -83,7 +83,7 @@ public class MainActivity extends AppCompatActivity {
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 switch (item.getItemId()) {
                     case R.id.home:
-                        openMainActivity();
+//                        openMainActivity();
                         return true;
                     case R.id.portfolio:
                         openPortfolio();
@@ -95,6 +95,7 @@ public class MainActivity extends AppCompatActivity {
                 return false;
             }
         });
+        bottomNavigationView.setSelectedItemId(R.id.home);
 
         FirebaseFirestore db = FirebaseFirestore.getInstance();
         DocumentReference docRef = db.collection("Class").document("C7");
@@ -120,11 +121,13 @@ public class MainActivity extends AppCompatActivity {
                             String cname = document.getString("name");
                             String cmozip = document.getString("mozip");
                             String cdate = document.getString("date");
+                            String cst = document.getString("starttime");
+                            String cet = document.getString("endtime");
 
                             // 텍스트뷰를 수정하는 코드를 여기에 추가합니다
                             classname.setText(cname);
                             mozip.setText(Objects.requireNonNull(cmozip) + "명");
-                            classdate.setText(cdate);
+                            classdate.setText(cdate + "  " + cst + " ~ " + cet);
 
                         } else {
                             openlistlayout.setVisibility(View.INVISIBLE);

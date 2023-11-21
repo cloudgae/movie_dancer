@@ -137,7 +137,9 @@
                             android:text="어떤 클래스인가요? "
                             android:drawableRight="@drawable/redstar"
                             android:fontFamily="@font/notosanskr_regular"/>
-
+                        <FrameLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
                         <EditText
                             android:id="@+id/edtxt_intro"
                             android:layout_width="match_parent"
@@ -151,6 +153,19 @@
                             android:textColor="#BBBBBB"
                             android:maxLength="200"
                             android:paddingHorizontal="10dp"/>
+                            <TextView
+                                android:id="@+id/charCountTextView"
+                                android:layout_width="match_parent"
+                                android:paddingHorizontal="10dp"
+                                android:layout_height="wrap_content"
+                                android:gravity="right"
+                                android:layout_gravity="bottom"
+                                android:text=""
+                                android:fontFamily="@font/notosanskr_regular"
+                                android:textSize="12dp"
+                                android:textColor="#BBBBBB"
+                                />
+                        </FrameLayout>
 
                         <TextView
                             android:layout_marginTop="40dp"
@@ -160,6 +175,9 @@
                             android:drawableRight="@drawable/redstar"
                             android:fontFamily="@font/notosanskr_regular"/>
 
+                        <FrameLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
                         <EditText
                             android:id="@+id/edtxt_intro2"
                             android:layout_width="match_parent"
@@ -173,7 +191,19 @@
                             android:textColor="#BBBBBB"
                             android:maxLength="200"
                             android:paddingHorizontal="10dp"/>
-
+                            <TextView
+                                android:id="@+id/charCountTextView2"
+                                android:layout_width="match_parent"
+                                android:paddingHorizontal="10dp"
+                                android:layout_height="wrap_content"
+                                android:gravity="right"
+                                android:layout_gravity="bottom"
+                                android:text=""
+                                android:fontFamily="@font/notosanskr_regular"
+                                android:textSize="12dp"
+                                android:textColor="#BBBBBB"
+                                />
+                        </FrameLayout>
                     </LinearLayout>
                 </LinearLayout>
 

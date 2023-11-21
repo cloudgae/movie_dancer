@@ -18,6 +18,7 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageButton;
 import android.os.Environment;
@@ -29,7 +30,10 @@ import com.amazonaws.regions.Regions;
 import com.amazonaws.services.s3.AmazonS3;
 import com.amazonaws.services.s3.AmazonS3Client;
 import com.amazonaws.services.s3.model.PutObjectRequest;
+import com.example.moovit_dancer.MainActivity;
+import com.example.moovit_dancer.MyPage.MyPage_0;
 import com.example.moovit_dancer.R;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.tabs.TabLayout;
 import java.io.File;
 import java.text.SimpleDateFormat;
@@ -39,6 +43,7 @@ public class Portfolio extends AppCompatActivity {
     ImageButton addbtn;
     private static final int PICK_VIDEO_REQUEST = 1;
     private File videoFile; // 동영상 파일 변수 추가
+    private BottomNavigationView bottomNavigationView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,8 +64,41 @@ public class Portfolio extends AppCompatActivity {
                 openGallery();
             }
         });
+
+        bottomNavigationView = findViewById(R.id.bottomNavigationView);
+        bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                switch (item.getItemId()) {
+                    case R.id.home:
+                        openMainActivity();
+                        return true;
+                    case R.id.portfolio:
+//                        openPortfolio();
+                        return true;
+                    case R.id.mypage:
+                        openMyPage();
+                        return true;
+                }
+                return false;
+            }
+        });
+        bottomNavigationView.setSelectedItemId(R.id.portfolio);
+    }
+    private void openMainActivity() {
+        Intent intent = new Intent(this, MainActivity.class);
+        startActivity(intent);
     }
 
+    private void openPortfolio() {
+        Intent intent = new Intent(this, Portfolio.class);
+        startActivity(intent);
+    }
+
+    private void openMyPage() {
+        Intent intent = new Intent(this, MyPage_0.class);
+        startActivity(intent);
+    }
     private void openGallery() {
         Intent intent = new Intent();
         intent.setType("video/*");

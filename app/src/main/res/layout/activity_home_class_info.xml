@@ -166,7 +166,8 @@
                     android:includeFontPadding="false"
                     android:padding="10dp"
                     android:text="노원구 공릉동"
-                    android:textSize="11dp" />
+                    android:textSize="11dp"
+                    android:singleLine="true"/>
             </LinearLayout>
 
             <com.google.android.material.tabs.TabLayout
@@ -190,7 +191,7 @@
     <LinearLayout
         android:id="@+id/pricebar"
         android:layout_width="match_parent"
-        android:layout_height="72dp"
+        android:layout_height="65dp"
         android:background="#313131"
         android:orientation="horizontal">
 

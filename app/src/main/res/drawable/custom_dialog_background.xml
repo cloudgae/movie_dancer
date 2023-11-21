@@ -3,7 +3,7 @@
     <item android:right="0dp" android:left="0dp" android:top="0dp">
         <shape xmlns:android="http://schemas.android.com/apk/res/android">
             <solid android:color="#FFFFFF" />
-            <corners android:radius="16dp" android:topRightRadius="16dp" />
+            <corners android:topLeftRadius="10dp" android:topRightRadius="10dp" />
         </shape>
     </item>
 </layer-list>

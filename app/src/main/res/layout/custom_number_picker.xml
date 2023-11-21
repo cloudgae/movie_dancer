@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="360dp"
+    android:layout_height="wrap_content"
+    android:background="@drawable/rounded_background">
+
+    <TextView
+        android:id="@+id/text_timepicker"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/notosanskr_bold"
+        android:text="학생 수 선택"
+        android:textSize="15dp"
+        android:layout_marginHorizontal="20dp"
+        app:layout_constraintBottom_toTopOf="@+id/numberpicker"
+        app:layout_constraintStart_toStartOf="@+id/numberpicker"
+        android:textColor="#3d3d3d"/>
+
+    <NumberPicker
+        android:layout_marginHorizontal="10dp"
+        android:id="@+id/numberpicker"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toTopOf="@+id/text_timepicker"
+        />
+
+<!--    <ImageButton-->
+<!--        android:id="@+id/timepicker_btn"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_marginHorizontal="20dp"-->
+<!--        android:fontFamily="@font/notosanskr_regular"-->
+<!--        android:text="선택 완료"-->
+<!--        app:layout_constraintTop_toBottomOf="@+id/numberpicker"-->
+<!--        app:srcCompat="@drawable/timeselect"-->
+<!--        tools:layout_editor_absoluteX="20dp"-->
+<!--        android:background="@android:color/transparent"/>-->
+
+</androidx.constraintlayout.widget.ConstraintLayout>
