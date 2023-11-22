@@ -333,14 +333,7 @@ public class Open_1 extends AppCompatActivity {
 
                 // 업로드할 S3 버킷 이름 및 객체 키 설정
                 String bucketName = "moovitbucket2";
-//                String objectKey = generateObjectKey(videoFile.getAbsolutePath());
                 String objectKey = generateObjectKey(videoFile.getAbsolutePath(), "videos");
-
-                // 동영상 업로드
-//                s3Client.putObject(new PutObjectRequest(bucketName, objectKey, videoFile));
-                // 동영상 업로드
-//                s3Client.putObject(new PutObjectRequest(bucketName, "videos/" + generateObjectKey(videoFile.getAbsolutePath()), videoFile));
-//                s3Client.putObject(new PutObjectRequest(bucketName, generateObjectKey(videoFile.getAbsolutePath(), "videos"), videoFile));
                 s3Client.putObject(new PutObjectRequest(bucketName, generateObjectKey(videoFile.getAbsolutePath(), "videos"), videoFile));
 
             }
