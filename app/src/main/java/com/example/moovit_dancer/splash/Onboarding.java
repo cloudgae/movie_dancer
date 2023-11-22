@@ -106,7 +106,7 @@ public class Onboarding extends AppCompatActivity {
         EditText newCareer = new EditText(this);
         LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
                 LinearLayout.LayoutParams.MATCH_PARENT,
-                200, // 높이를 200으로 설정
+                150, // 높이를 200으로 설정
                 1.0f
         );
         params.setMargins(0, 0, 0, dpToPx(10)); // marginBottom: 10dp

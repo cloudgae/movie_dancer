@@ -57,6 +57,9 @@ public class Open_8 extends AppCompatActivity {
         nextkey.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                data.put("price", edtxt_fee.getText().toString());
+                docRef.update(data);
+
                 // 다이얼로그 변수 선언
                 final AlertDialog[] alertDialog = {null};
 
