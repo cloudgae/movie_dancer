@@ -25,6 +25,12 @@ import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.Locale;
+
 public class HomeClassDetail extends AppCompatActivity {
 
     Button detail;
@@ -72,6 +78,25 @@ public class HomeClassDetail extends AppCompatActivity {
                         linear1.setVisibility(View.INVISIBLE);
                     }
 
+                    // 'date' 필드 값 가져오기
+                    String dateString = document.getString("date");
+
+                    // dateString을 Date 객체로 변환
+                    SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault());
+                    Date eventDate = null;
+                    try {
+                        eventDate = dateFormat.parse(dateString);
+                    } catch (ParseException e) {
+                        e.printStackTrace();
+                    }
+
+                    // 오늘 날짜 가져오기
+                    Date today = Calendar.getInstance().getTime();
+
+                    // 디데이 계산
+                    int dDay = calculateDDay(today, eventDate);
+
+                    dday.setText("D-" + dDay);
 
                     // AWS S3에서 이미지를 로드하여 이미지뷰에 설정
 //                    String imageName = "C7image/C7image"; // S3 버킷 내 이미지 파일의 경로 및 파일명
@@ -105,7 +130,12 @@ public class HomeClassDetail extends AppCompatActivity {
 
 
     }
-
+    private int calculateDDay(Date today, Date eventDate) {
+        // 디데이 계산 (오늘 날짜와 이벤트 날짜의 차이를 일수로 계산)
+        long diffInMillies = eventDate.getTime() - today.getTime();
+        long diffInDays = diffInMillies / (24 * 60 * 60 * 1000);
+        return (int) (diffInDays + 1); // 디데이는 오늘 포함
+    }
     private void loadImageFromS3(String imageName) {
         // 디바이스 독립적인 픽셀 (dp)를 픽셀로 변환
         int widthInPixels = (int) (360 * getResources().getDisplayMetrics().density);

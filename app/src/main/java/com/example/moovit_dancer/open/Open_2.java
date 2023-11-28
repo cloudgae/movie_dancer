@@ -93,13 +93,6 @@ public class Open_2 extends AppCompatActivity {
                     textView.setBackground(shape);
                     textView.setPadding(16, 8, 16, 8);
 
-                    // 'X' 모양 추가
-//                    TextView deleteButton = new TextView(Open_2.this);
-//                    deleteButton.setText("x");
-//                    deleteButton.setTextColor(Color.parseColor("#E87FEA"));
-//                    deleteButton.setPadding(8, 8, 8, 8);
-//                    deleteButton.setTextSize(14);
-
 
                     // TextView와 'X' 모양을 컨테이너 레이아웃에 추가
                     container.addView(textView);

@@ -37,9 +37,15 @@ import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.Locale;
+
 public class HomeClassInfo extends AppCompatActivity {
     private BottomNavigationView bottomNavigationView;
-    TextView genretext, cname1, cname2, gradetext, daytext, locationtext, pricetext, cmozip;
+    TextView genretext, cname1, cname2, gradetext, daytext, locationtext, pricetext, cmozip, dday;
     ImageButton backbtn, rewritebtn, viewstudentbtn;
     ImageView cimage;
 
@@ -64,6 +70,7 @@ public class HomeClassInfo extends AppCompatActivity {
         TabLayout tabLayout = findViewById(R.id.tab_layout);
         rewritebtn = (ImageButton) findViewById(R.id.rewritebtn);
         viewstudentbtn = (ImageButton) findViewById(R.id.viewstudentbtn);
+        dday = findViewById(R.id.dday);
 
         pager.setOffscreenPageLimit(3);
         tabLayout.setupWithViewPager(pager);
@@ -117,16 +124,29 @@ public class HomeClassInfo extends AppCompatActivity {
                     }
                     locationtext.setText(document.getString("location"));
 
-                    //모집중 (신청인원/최대인원)
-//                    cmozip.setText("모집중 (" + document.getString("mozip") + "/" +
-//                            document.getString("max") + ")");
-
-                    // AWS S3에서 이미지를 로드하여 이미지뷰에 설정
-//                    String imageName = "C7image/C7image"; // S3 버킷 내 이미지 파일의 경로 및 파일명
-//                    loadImageFromS3(imageName);
                     String imageUrl = "https://moovitbucket2.s3.ap-northeast-2.amazonaws.com/C7image/C7image";
                     Glide.with(HomeClassInfo.this).load(imageUrl).diskCacheStrategy(DiskCacheStrategy.NONE)
                             .skipMemoryCache(true).into(cimage);
+
+                    // 'date' 필드 값 가져오기
+                    String dateString = document.getString("date");
+
+                    // dateString을 Date 객체로 변환
+                    SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault());
+                    Date eventDate = null;
+                    try {
+                        eventDate = dateFormat.parse(dateString);
+                    } catch (ParseException e) {
+                        e.printStackTrace();
+                    }
+
+                    // 오늘 날짜 가져오기
+                    Date today = Calendar.getInstance().getTime();
+
+                    // 디데이 계산
+                    int dDay = calculateDDay(today, eventDate);
+
+                    dday.setText("D-" + dDay);
                 }
             }
         });
@@ -149,6 +169,12 @@ public class HomeClassInfo extends AppCompatActivity {
                 finish();
             }
         });
+    }
+    private int calculateDDay(Date today, Date eventDate) {
+        // 디데이 계산 (오늘 날짜와 이벤트 날짜의 차이를 일수로 계산)
+        long diffInMillies = eventDate.getTime() - today.getTime();
+        long diffInDays = diffInMillies / (24 * 60 * 60 * 1000);
+        return (int) (diffInDays + 1); // 디데이는 오늘 포함
     }
 
     static class PageAdapter extends FragmentStatePagerAdapter {
