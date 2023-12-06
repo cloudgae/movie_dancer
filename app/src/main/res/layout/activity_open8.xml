@@ -156,7 +156,8 @@
                     android:layout_height="187dp"
                     android:layout_weight="1"
                     android:background="#212121"
-                    android:orientation="vertical">
+                    android:orientation="vertical"
+                    android:visibility="invisible">
                     <TextView
                         android:layout_marginTop="10dp"
                         android:layout_width="wrap_content"
