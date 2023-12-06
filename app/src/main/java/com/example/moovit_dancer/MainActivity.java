@@ -58,9 +58,10 @@ public class MainActivity extends AppCompatActivity {
     private DanceClassAdapter adapter;
 
     ImageView classimg;
-    TextView classname, mozip, classdate;
+    TextView classname, mozip, classdate, dancer_name;
     LinearLayout openlistlayout;
     Button classinfo;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -73,6 +74,7 @@ public class MainActivity extends AppCompatActivity {
         classdate = (TextView) findViewById(R.id.classdate);
         openlistlayout = (LinearLayout) findViewById(R.id.openlistlayout);
         classinfo = (Button) findViewById(R.id.classinfo);
+        dancer_name = (TextView) findViewById(R.id.dancer_name);
 
         // 초기에 숨겨놓기
         openlistlayout.setVisibility(View.INVISIBLE);
@@ -156,76 +158,23 @@ public class MainActivity extends AppCompatActivity {
                 finish();
             }
         });
-//        recyclerView = findViewById(R.id.recyclerView);
-//        recyclerView.setLayoutManager(new LinearLayoutManager(this));
-//
-//        dancerRef.collection("Class")
-//                .whereEqualTo("open", true)
-//                .get()
-//                .addOnCompleteListener(task -> {
-//                    if (task.isSuccessful()) {
-//                        List<DanceClass> classes = new ArrayList<>();
-//                        for (QueryDocumentSnapshot document : task.getResult()) {
-//                            int cid = Integer.parseInt(document.getId());
-//                            String cname = document.getString("name");
-//                            String cmozip = document.getString("mozip");
-//                            classes.add(new DanceClass(cid, cname, cmozip));
-//                        }
-//
-//                        // Log를 사용하여 classes 리스트 확인
-//                        for (DanceClass danceClass : classes) {
-//                            Log.d("DanceClassAdapter", "ClassName: " + danceClass.getClassName() + ", Mozip: " + danceClass.getMozip());
-//                        }
-//
-//                        // DanceClassAdapter에 데이터 갱신 및 RecyclerView에 설정
-//                        adapter = new DanceClassAdapter(classes);
-//                        recyclerView.setAdapter(adapter);
-//                        adapter.notifyDataSetChanged(); // 데이터가 변경되었음을 알림
-//                    } else {
-//                        Log.e("DanceClassAdapter", "Error getting documents: ", task.getException());
-//                    }
-//                });
-
-
 //        FirebaseFirestore db = FirebaseFirestore.getInstance();
-        //                db.collection("Class").document();
+//                        db.collection("Class").document();
 
-//        Map<String, Object> data = new HashMap<>();
+        DocumentReference docRef2 = db.collection("Dancer").document("profile1");
+        docRef2.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                if(task.isSuccessful()){
+                    DocumentSnapshot document2 = task.getResult();
+                    dancer_name.setText(document2.getString("dancername") +  " 댄서님,\n안녕하세요.");
+                }
+//
+            }
+        });
 
-
-//        openclass = findViewById(R.id.openclass);
-//        haveclass = findViewById(R.id.haveclass);
         makeclass = findViewById(R.id.makeclass);
-        /*mn1 = findViewById(R.id.menu1);
-        mn2 = findViewById(R.id.menu2);
-        mn3 = findViewById(R.id.menu3);*/
 
-//        openclass.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//
-////                FirebaseFirestore db = FirebaseFirestore.getInstance();
-////                DocumentReference dbref = db.collection("Class").document();
-////                DocumentReference classRef = db.collection("Class").document();
-////// Later...
-////                classRef.set(data);
-//
-//                Intent i = new Intent(MainActivity.this, Open_0.class);
-//                startActivity(i);    //intent 에 명시된 액티비티로 이동
-//                finish();    //현재 액티비티 종료
-//
-//
-//            }
-//        });
-
-//        haveclass.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                Intent i = new Intent(MainActivity.this, HomeClassList.class);
-//                startActivity(i);
-//                finish();
-//            }
-//        });
 
         makeclass.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -235,34 +184,6 @@ public class MainActivity extends AppCompatActivity {
                 finish();
             }
         });
-
-
-        /*mn1.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent i = new Intent(MainActivity.this, MainActivity.class);
-                startActivity(i);
-                finish();
-            }
-        });
-
-        mn2.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent i = new Intent(MainActivity.this, Portfolio.class);
-                startActivity(i);
-                finish();
-            }
-        });
-
-        mn3.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent i = new Intent(MainActivity.this, MyPage_0.class);
-                startActivity(i);
-                finish();
-            }
-        });*/
 
 
     }

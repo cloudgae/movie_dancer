@@ -225,6 +225,7 @@
                         android:layout_weight="1"/>
                 </RadioGroup>
 
+
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -247,6 +248,7 @@
                         android:text="원데이"
                         android:textColor="@color/white"
                         android:layout_weight="1"/>
+
                     <RadioButton
                         android:id="@+id/R_tn"
                         android:layout_width="match_parent"
@@ -256,7 +258,15 @@
                         android:textColor="@color/white"
                         android:layout_weight="1"/>
                 </RadioGroup>
-
+                <Spinner
+                    android:layout_marginTop="10dp"
+                    android:id="@+id/spinner3"
+                    android:layout_width="150dp"
+                    android:layout_height="40dp"
+                    android:backgroundTint="#BEBEBE"
+                    android:layout_gravity="right"
+                    android:layout_marginHorizontal="20dp"
+                    android:visibility="invisible"/>
 
                 <View
                     android:layout_width="match_parent"

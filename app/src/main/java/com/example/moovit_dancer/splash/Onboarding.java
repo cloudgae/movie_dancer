@@ -88,8 +88,11 @@ public class Onboarding extends AppCompatActivity {
     private void saveIntroduceToFirestore() {
         // 'edtxt_intro'의 내용을 Firestore에 저장
         String introduce = ((EditText) findViewById(R.id.edtxt_intro)).getText().toString();
+        String dancername = ((EditText) findViewById(R.id.edtxt_name)).getText().toString();
+
         Map<String, Object> data = new HashMap<>();
         data.put("introduce", introduce);
+        data.put("dancername", dancername);
 
         profile1Document.update(data)
                 .addOnSuccessListener(aVoid -> {

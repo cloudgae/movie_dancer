@@ -32,6 +32,7 @@
         </FrameLayout>
 
         <TextView
+            android:id="@+id/dancer_name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="올더무브 댄서님,\n안녕하세요."

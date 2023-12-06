@@ -17,6 +17,7 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.moovit_dancer.MainActivity;
 import com.example.moovit_dancer.R;
@@ -35,6 +36,7 @@ public class Open_0 extends AppCompatActivity {
 
     String[] items = {"K-POP", "스트릿", "코레오"};
     String[] items2 = {"상", "중", "하"};
+    String[] items3 = {"회차 선택", "4회 미만", "4회 이상 8회 미만"};
     ImageButton backkey, nextkey0;
     RadioGroup Rg_p, Rg_t;
     RadioButton R_p1, R_pn, R_t1, R_tn;
@@ -49,6 +51,7 @@ public class Open_0 extends AppCompatActivity {
 
         Spinner spinner = findViewById(R.id.spinner);
         Spinner spinner2 = findViewById(R.id.spinner2);
+        Spinner spinner3 = findViewById(R.id.spinner3);
 
         nextkey0 = findViewById(R.id.nextkey0);
 
@@ -162,13 +165,52 @@ public class Open_0 extends AppCompatActivity {
             @Override
             public void onCheckedChanged(RadioGroup radioGroup, int i) {
                 if(i == R.id.R_t1){
-                    data.put("frequency", "1");
+                    data.put("frequency", "원데이 클래스");
                     newClassRef.set(data);
+                    spinner3.setVisibility(View.INVISIBLE);
                 }
                 else{
-                    data.put("frequency", "n");
+                    data.put("frequency", "다회차 클래스");
                     newClassRef.set(data);
+                    spinner3.setVisibility(View.VISIBLE);
                 }
+            }
+        });
+
+        //드롭다운 메뉴2
+        ArrayAdapter<String> adapter3 = new ArrayAdapter<>(
+                this, R.layout.custom_spinner_item, R.id.text_view_id, items3
+        );
+        adapter3.setDropDownViewResource(
+                R.layout.custom_spinner_item
+        );
+        spinner3.setAdapter(adapter3);
+//        spinner2.setPopupBackgroundResource(R.drawable.custom_spinner_dropdown_item_background);
+        spinner3.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                switch (i) {
+                    case 0:
+//                        data.put("frequency", "상");
+//                        newClassRef.set(data);
+//                        classRef.update("genre", "kpop");
+//                        Toast.makeText(getApplicationContext(), "회차를 선택해주세요.", Toast.LENGTH_SHORT).show();
+                        break;
+                    case 1:
+                        data.put("frequency_day", "4회 미만");
+                        newClassRef.set(data);
+                        break;
+                    case 2:
+                        data.put("frequency_day", "4회 이상 8회 미만");
+                        newClassRef.set(data);
+                        break;
+                };
+            };
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+                data.put("difficulty", "상");
+                newClassRef.set(data);
             }
         });
 

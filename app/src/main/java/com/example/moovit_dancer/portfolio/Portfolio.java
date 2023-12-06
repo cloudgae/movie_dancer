@@ -12,6 +12,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
 import android.graphics.Bitmap;
+import android.media.Image;
 import android.media.MediaMetadataRetriever;
 import android.net.Uri;
 import android.os.AsyncTask;
@@ -32,9 +33,11 @@ import com.amazonaws.services.s3.AmazonS3Client;
 import com.amazonaws.services.s3.model.PutObjectRequest;
 import com.example.moovit_dancer.MainActivity;
 import com.example.moovit_dancer.MyPage.MyPage_0;
+import com.example.moovit_dancer.MyPage.MyPage_UploadList;
 import com.example.moovit_dancer.R;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.tabs.TabLayout;
+
 import java.io.File;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -45,6 +48,7 @@ public class Portfolio extends AppCompatActivity {
     private File videoFile; // 동영상 파일 변수 추가
     private BottomNavigationView bottomNavigationView;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -54,9 +58,12 @@ public class Portfolio extends AppCompatActivity {
         TabLayout tabLayout = findViewById(R.id.tab_layout);
         addbtn = findViewById(R.id.addbtn);
 
+
         pager.setOffscreenPageLimit(2);
         tabLayout.setupWithViewPager(pager);
         pager.setAdapter(new PageAdapter(getSupportFragmentManager(), this));
+
+
 
         addbtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -85,6 +92,7 @@ public class Portfolio extends AppCompatActivity {
         });
         bottomNavigationView.setSelectedItemId(R.id.portfolio);
     }
+
     private void openMainActivity() {
         Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
@@ -99,6 +107,7 @@ public class Portfolio extends AppCompatActivity {
         Intent intent = new Intent(this, MyPage_0.class);
         startActivity(intent);
     }
+
     private void openGallery() {
         Intent intent = new Intent();
         intent.setType("video/*");
@@ -130,7 +139,8 @@ public class Portfolio extends AppCompatActivity {
                 // 오류 처리: videoPath가 null일 경우
                 Log.e("dd", "실패");
             }
-        }
+
+            }
     }
 
 
@@ -217,7 +227,8 @@ public class Portfolio extends AppCompatActivity {
     // 고유한 객체 키 생성
     private String generateObjectKey(String videoPath) {
         String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
-        return "videos/" + timeStamp + "_" + videoFile.getName();
+//        return "videos/" + timeStamp + "_" + videoFile.getName();
+        return "videos/" + "portfolio";
     }
 
     static class PageAdapter extends FragmentStatePagerAdapter {

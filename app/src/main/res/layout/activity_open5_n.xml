@@ -4,8 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     android:background="@color/black"
+    android:orientation="vertical"
     tools:context=".open.Open_1">
 
     <ScrollView
@@ -53,8 +53,8 @@
                         android:layout_gravity="center"
                         android:fontFamily="@font/notosanskr_bold"
                         android:text="클래스 소개"
-                        android:textSize="14dp"
-                        android:textColor="#8F8F8F"/>
+                        android:textColor="#8F8F8F"
+                        android:textSize="14dp" />
 
                     <TextView
                         android:layout_width="match_parent"
@@ -70,7 +70,7 @@
                 style="@style/Widget.AppCompat.ProgressBar.Horizontal"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:progress="100"
+                android:progress="25"
                 android:scaleY="0.5"/>
 
             <TableLayout
@@ -91,8 +91,7 @@
                         android:background="#3D3D3D"
                         android:fontFamily="@font/notosanskr_medium"
                         android:text="일정 선택"
-                        android:textSize="12dp"
-                        android:textColor="#858585"/>
+                        android:textSize="12dp" />
 
                     <TextView
                         android:layout_width="match_parent"
@@ -101,6 +100,7 @@
                         android:background="#3D3D3D"
                         android:fontFamily="@font/notosanskr_medium"
                         android:text="수강료 입력"
+                        android:textColor="#858585"
                         android:textSize="12dp" />
                 </TableRow>
             </TableLayout>
@@ -111,27 +111,36 @@
                 android:layout_height="match_parent"
                 android:layout_marginHorizontal="20dp"
                 android:fontFamily="@font/notosanskr_regular"
-                android:text="한 회차 당 수강료 입력 "
+                android:text="스케줄 협의를 위한 오픈 채팅창 링크를 입력해주세요 "
                 android:drawableRight="@drawable/redstar"
-                android:textSize="14dp" />
-            <EditText
+                android:textSize="14dp"
+                android:includeFontPadding="false" />
+            <TextView
                 android:layout_marginTop="10dp"
-                android:id="@+id/edtxt_fee"
-                android:layout_width="match_parent"
-                android:layout_height="42dp"
-                android:fontFamily="@font/notosanskr_regular"
-                android:hint="금액입력(원)"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
                 android:layout_marginHorizontal="20dp"
-                android:gravity="right|center_vertical"
+                android:fontFamily="@font/notosanskr_regular"
+                android:text="수강생들과 협의 하에 수업 스케줄을 정해주세요"
                 android:textSize="12dp"
+                android:layout_marginBottom="20dp"
+                android:includeFontPadding="false"
+                android:textColor="#BBBBBB"/>
+
+            <EditText
+                android:id="@+id/edtxt_location2"
+                android:layout_marginTop="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginHorizontal="20dp"
                 android:background="@drawable/et_board"
-                android:textColor="#BBBBBB"
-                android:textColorHint="#707070"
-                android:maxLength="200"
+                android:fontFamily="@font/notosanskr_regular"
+                android:hint="링크를 입력하세요."
+                android:maxLength="20"
                 android:paddingHorizontal="10dp"
-                android:inputType="number"/>
-
-
+                android:textColor="#BBBBBB"
+                android:textColorHint="#BBBBBB"
+                android:textSize="14dp" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -150,96 +159,10 @@
                         android:orientation="vertical"></LinearLayout>
                 </LinearLayout>
 
-                <LinearLayout
-                    android:layout_marginVertical="40dp"
+                <View
                     android:layout_width="match_parent"
-                    android:layout_height="187dp"
-                    android:layout_weight="1"
-                    android:background="#212121"
-                    android:orientation="vertical">
-                    <TextView
-                        android:layout_marginTop="10dp"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginHorizontal="20dp"
-                        android:fontFamily="@font/notosanskr_regular"
-                        android:text="한 회차 당 수강료 입력 "
-                        android:textSize="14dp" />
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal">
-                        <EditText
-                            android:id="@+id/edtxt_fee1"
-                            android:layout_width="142dp"
-                            android:layout_height="42dp"
-                            android:fontFamily="@font/notosanskr_regular"
-                            android:hint="한 회차 수강료"
-                            android:layout_marginLeft="20dp"
-                            android:layout_marginRight="5dp"
-                            android:gravity="center"
-                            android:textSize="12dp"
-                            android:background="@drawable/et_board"
-                            android:textColor="#BBBBBB"
-                            android:textColorHint="#707070"
-                            android:paddingHorizontal="10dp"
-                            android:inputType="number"
-                            android:editable="false"/>
-
-                        <ImageView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:src="@drawable/feemultiple"
-                            android:layout_gravity="center_vertical"/>
-                        <EditText
-                            android:id="@+id/edtxt_fee2"
-                            android:layout_width="142dp"
-                            android:layout_height="42dp"
-                            android:fontFamily="@font/notosanskr_regular"
-                            android:hint="N회차"
-                            android:layout_marginHorizontal="5dp"
-                            android:gravity="center"
-                            android:textSize="12dp"
-                            android:background="@drawable/et_board"
-                            android:textColor="#BBBBBB"
-                            android:textColorHint="#707070"
-                            android:paddingHorizontal="10dp"
-                            android:inputType="number"
-                            android:editable="false"/>
-
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_marginHorizontal="20dp"
-                        android:layout_marginTop="20dp"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal">
-
-                        <ImageView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:src="@drawable/feeequal"
-                            android:layout_gravity="center_vertical"/>
-                        <EditText
-                            android:id="@+id/edtxt_fee3"
-                            android:layout_width="290dp"
-                            android:layout_height="42dp"
-                            android:fontFamily="@font/notosanskr_regular"
-                            android:hint="N원"
-                            android:layout_marginHorizontal="20dp"
-                            android:gravity="center"
-                            android:textSize="12dp"
-                            android:background="@drawable/et_board"
-                            android:textColor="#BBBBBB"
-                            android:textColorHint="#707070"
-                            android:paddingHorizontal="10dp"
-                            android:inputType="number"
-                            android:editable="false"/>
-
-                    </LinearLayout>
-
-                </LinearLayout>
+                    android:layout_height="50dp"
+                    android:layout_weight="1" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
