@@ -3,6 +3,7 @@ package com.example.moovit_dancer.portfolio;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.viewpager.widget.ViewPager;
 
 import android.annotation.SuppressLint;
@@ -36,7 +37,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class Portfolio_upload extends AppCompatActivity {
+public class Portfolio_upload extends AppCompatActivity  implements Portfolio_tab1.PortfolioUploadListener{
     private ImageView videoThumbnail;
     EditText edtxt_hash;
     ImageButton addhash, portfolio_upload;
@@ -48,6 +49,7 @@ public class Portfolio_upload extends AppCompatActivity {
     List<String> existingHashtags;
     Map<String, Object> data = new HashMap<>();
     DocumentReference portfolioRef;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -174,6 +176,7 @@ public class Portfolio_upload extends AppCompatActivity {
         // Portfolio_tab1에 접근
         portfolioTab1 = new Portfolio_tab1();
 
+
         portfolio_upload.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -188,13 +191,12 @@ public class Portfolio_upload extends AppCompatActivity {
 
                 // 이미지뷰를 visible로 변경
                 showImageViewInTab1();
+// 인터페이스 메서드 호출
+                onPortfolioUploadClicked();
             }
         });
     }
 
-    private void createAndAddTextView(String text) {
-
-    }
 
     // Portfolio_tab1의 이미지뷰 가시성 변경 메서드
     public void showImageViewInTab1() {
@@ -202,6 +204,7 @@ public class Portfolio_upload extends AppCompatActivity {
             portfolioTab1.showImageView();
         }
     }
+
     private void addHashtagToUI(String hashtag, DocumentReference portfolioRef) {
         LinearLayout container = new LinearLayout(Portfolio_upload.this);
         container.setOrientation(LinearLayout.HORIZONTAL);
@@ -241,5 +244,11 @@ public class Portfolio_upload extends AppCompatActivity {
         });
 
         ovalContainer.setOrientation(LinearLayout.HORIZONTAL);
+    }
+
+    @Override
+    public void onPortfolioUploadClicked() {
+        // Portfolio_tab1에서 hash_textview의 가시성 업데이트
+        portfolioTab1.showImageView();
     }
 }

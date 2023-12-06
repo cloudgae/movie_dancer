@@ -11,6 +11,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -66,26 +67,7 @@ public class Portfolio_tab1 extends Fragment {
             // 초기에 해시태그 텍스트뷰를 비어있는 상태로 설정
             hash_textview.setText("");
 
-            FirebaseFirestore db = FirebaseFirestore.getInstance();
-            DocumentReference portfolioRef = db.collection("Portfolio").document("P1");
 
-            // "P1" 문서의 데이터 가져오기
-            portfolioRef.get().addOnCompleteListener(task -> {
-                if (task.isSuccessful()) {
-                    DocumentSnapshot document = task.getResult();
-                    if (document.exists()) {
-                        // "hash" 필드에 저장된 문자열 배열 가져오기
-                        List<String> loadedHashtags = (List<String>) document.get("hash");
-                        if (loadedHashtags != null && !loadedHashtags.isEmpty()) {
-                            hashtags.clear();
-                            hashtags.addAll(loadedHashtags);
-                            updateHashTextView();
-                        }
-                    }
-                } else {
-                    // 가져오기 실패 시에 대한 처리
-                }
-            });
 
             isInitialLoad = false;
         }
@@ -119,6 +101,29 @@ public class Portfolio_tab1 extends Fragment {
                 // 추출된 썸네일을 ImageView에 설정
                 video_thumbnail.setImageBitmap(bitmap);
                 grad.setImageResource(R.drawable.portfolio_gr);
+//                hash_textview.setVisibility(View.VISIBLE);
+                FirebaseFirestore db = FirebaseFirestore.getInstance();
+                DocumentReference portfolioRef = db.collection("Portfolio").document("P1");
+
+                // "P1" 문서의 데이터 가져오기
+                portfolioRef.get().addOnCompleteListener(task -> {
+                    if (task.isSuccessful()) {
+                        DocumentSnapshot document = task.getResult();
+                        if (document.exists()) {
+                            // "hash" 필드에 저장된 문자열 배열 가져오기
+                            List<String> loadedHashtags = (List<String>) document.get("hash");
+                            if (loadedHashtags != null && !loadedHashtags.isEmpty()) {
+                                hashtags.clear();
+                                hashtags.addAll(loadedHashtags);
+                                updateHashTextView();
+                            }
+                        }
+                    } else {
+                        // 가져오기 실패 시에 대한 처리
+                    }
+                });
+                hash_textview.setVisibility(View.VISIBLE);
+
             } else {
                 // 썸네일을 가져오지 못한 경우에 대한 처리 (예: 기본 이미지 설정)
                 video_thumbnail.setImageResource(R.drawable.thumbnail);
@@ -137,23 +142,27 @@ public class Portfolio_tab1 extends Fragment {
 
     // 이미지뷰 가시성 설정 메서드
     public void showImageView() {
+        Log.d("Debug", "showImageView");
         if (video_thumbnail != null) {
             video_thumbnail.setVisibility(View.VISIBLE);
-//            grad.setVisibility(View.VISIBLE);
-//            hash_textview.setVisibility(View.VISIBLE);
+            hash_textview.setVisibility(View.VISIBLE);
+        } else {
+            Log.e("Debug", "video_thumbnail is null");
         }
-//        if (playerCardView3 != null) {
-//            playerCardView3.setVisibility(View.VISIBLE);
-//
-//        }
     }
+
     private static void updateHashTextView() {
+        Log.d("Debug", "updateHashTextView");
         if (hash_textview != null) {
             StringBuilder hashText = new StringBuilder();
             for (String hashtag : hashtags) {
                 hashText.append("# ").append(hashtag).append(" ");
             }
             hash_textview.setText(hashText.toString());
+
+            Log.d("Debug", "Hash text: " + hashText.toString());
+        } else {
+            Log.e("Debug", "hash_textview is null");
         }
     }
 
@@ -166,6 +175,12 @@ public class Portfolio_tab1 extends Fragment {
         }
 
         hashtags.add(hashtag);
+
+        // 해시태그 추가 후에 업데이트 메서드 호출
         updateHashTextView();
+    }
+
+    public interface PortfolioUploadListener {
+        void onPortfolioUploadClicked();
     }
 }
