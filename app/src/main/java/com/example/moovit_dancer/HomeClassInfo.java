@@ -105,6 +105,16 @@ public class HomeClassInfo extends AppCompatActivity {
         drawable.setBounds(0, 0, widthInPx, heightInPx);
         genretext.setCompoundDrawables(null, drawable, null, null);
 
+        Drawable drawable1 = getResources().getDrawable(R.drawable.dayicon1207);
+        // dp 값을 px로 변환
+        int widthInDp1 = 35;
+        int heightInDp1 = 35;
+        float scale1 = getResources().getDisplayMetrics().density;
+        int widthInPx1 = (int) (widthInDp1 * scale1 + 0.5f);
+        int heightInPx1 = (int) (heightInDp1 * scale1 + 0.5f);
+        drawable1.setBounds(0, 0, widthInPx1, heightInPx1);
+        daytext.setCompoundDrawables(null, drawable1, null, null);
+
 
         FirebaseFirestore db = FirebaseFirestore.getInstance();
         DocumentReference docRef = db.collection("Class").document("C7");
