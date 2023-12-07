@@ -29,30 +29,66 @@
 
                 <com.google.android.material.card.MaterialCardView
                     android:id="@+id/playerCardView1"
-                    android:layout_width="150dp"
-                    android:layout_height="250dp"
+                    android:layout_width="154dp"
+                    android:layout_height="220dp"
                     android:layout_marginLeft="23dp"
                     app:cardCornerRadius="10dp">
-
+                    <FrameLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
                     <ImageView
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:src="@drawable/pf_example3"
                         android:scaleType="centerCrop" />
+                        <ImageView
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:src="@drawable/portfolio_gr" />
+
+                        <TextView
+                            android:id="@+id/hash_textview3"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:fontFamily="@font/notosanskr_medium"
+                            android:gravity="bottom"
+                            android:includeFontPadding="false"
+                            android:padding="10dp"
+                            android:text="#걸스힙합  #스트릿"
+                            android:textSize="12dp" />
+                    </FrameLayout>
                 </com.google.android.material.card.MaterialCardView>
 
                 <com.google.android.material.card.MaterialCardView
                     android:id="@+id/playerCardView2"
-                    android:layout_width="150dp"
-                    android:layout_height="250dp"
+                    android:layout_width="154dp"
+                    android:layout_height="220dp"
                     android:layout_marginLeft="12dp"
                     app:cardCornerRadius="10dp">
-
+                    <FrameLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
                     <ImageView
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:src="@drawable/pf_example"
                         android:scaleType="centerCrop" />
+                        <ImageView
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:src="@drawable/portfolio_gr" />
+
+                        <TextView
+                            android:id="@+id/hash_textview4"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:fontFamily="@font/notosanskr_medium"
+                            android:gravity="bottom"
+                            android:includeFontPadding="false"
+                            android:padding="10dp"
+                            android:text="#걸스힙합  #스우파"
+                            android:textSize="12dp" />
+                    </FrameLayout>
                 </com.google.android.material.card.MaterialCardView>
             </LinearLayout>
 

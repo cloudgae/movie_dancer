@@ -95,7 +95,7 @@ android:id="@+id/fragment_container"
                             android:gravity="bottom"
                             android:includeFontPadding="false"
                             android:padding="10dp"
-                            android:text="#챌린지  #케이"
+                            android:text="#챌린지  #케이팝"
                             android:textSize="12dp" />
                     </FrameLayout>
                 </com.google.android.material.card.MaterialCardView>

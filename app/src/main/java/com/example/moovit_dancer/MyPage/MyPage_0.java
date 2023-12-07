@@ -8,15 +8,23 @@ import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
+import android.widget.TextView;
 
 import com.example.moovit_dancer.MainActivity;
 import com.example.moovit_dancer.R;
 import com.example.moovit_dancer.portfolio.Portfolio;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
 
 public class MyPage_0 extends AppCompatActivity {
 
     private BottomNavigationView bottomNavigationView;
+    TextView user_profile;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,9 +32,23 @@ public class MyPage_0 extends AppCompatActivity {
         setContentView(R.layout.activity_my_page);
 
         Button arw = (Button) findViewById(R.id.goback);
-        Button btn1 = (Button) findViewById(R.id.classlist);
-        Button btn2 = (Button) findViewById(R.id.likelist);
-        Button btn3 = (Button) findViewById(R.id.mytype_info);
+        ImageButton btn1 = (ImageButton) findViewById(R.id.classlist);
+        ImageButton btn2 = (ImageButton) findViewById(R.id.likelist);
+        ImageButton btn3 = (ImageButton) findViewById(R.id.mytype_info);
+        user_profile = findViewById(R.id.user_profile);
+
+        FirebaseFirestore db = FirebaseFirestore.getInstance();
+        DocumentReference docRef2 = db.collection("Dancer").document("profile1");
+        docRef2.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                if(task.isSuccessful()){
+                    DocumentSnapshot document2 = task.getResult();
+                    user_profile.setText(document2.getString("dancername"));
+                }
+//
+            }
+        });
 
         arw.setOnClickListener(new View.OnClickListener() {
             @Override
